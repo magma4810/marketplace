@@ -18,7 +18,6 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const allowedOrigins = [
-  "https://otclickfrontend-vannesals-projects.vercel.app",
   "http://localhost:5173",
 ];
 
@@ -59,17 +58,15 @@ app.use(cookieParser());
 // Настройки сессии
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'your-secret-key',
+    secret: 'your-secret-key',
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
     proxy: true, 
     cookie: { 
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
-      domain: process.env.NODE_ENV === 'production' ? 'otclickbackend-vannesals-projects.vercel.app' : 'localhost'
+      domain: 'localhost'
     }
   })
 );
