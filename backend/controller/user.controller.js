@@ -63,6 +63,21 @@ class UserController {
             res.status(500).json({ error: 'Ошибка при обновлении заказов' });
         }
     }
+    async createOrder(req, res) {
+        const { productsID,deliveryAdress,deliveryDate,orderDate,cost } = req.body;
+        try {
+            const [getData, metadata] = await sequelize.query(
+                `INSERT INTO "Orders" ("productsID","deliveryAdress","deliveryDate","orderDate",cost) VALUES (ARRAY[:productsID],:deliveryAdress,:deliveryDate,:orderDate,:cost) returning id`,
+                {
+                    replacements: {productsID,deliveryAdress,deliveryDate,orderDate,cost}
+                }
+            );
+            res.json(getData);
+        } catch (error) {
+            console.error('Ошибка при создании заказа', error);
+            res.status(500).json({ error: 'Ошибка при создании заказа' });
+        }
+    }
     async getOrderByID(req, res) {
         const { id } = req.params;
         try {
@@ -116,7 +131,7 @@ class UserController {
         try {
             const [getData, metadata] = await sequelize.query(
                 `UPDATE "Users" 
-                SET "productsID" = ARRAY[:cart]
+                SET "productsID" = ARRAY[:cart]::integer[]
                 WHERE username = :username`,
                 {
                     replacements: {username,cart}

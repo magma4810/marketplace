@@ -37,8 +37,8 @@ export const MyOrders: FC = () => {
                 {isLoading ? (
                     <Loading />
                 ) : orders.length > 0 ? (
-                    orders.map((order) => (
-                        <CardOrder data={order} key={order.id} />
+                    orders.map((order,index) => (
+                        <CardOrder data={order} key={index} />
                     ))
                 ) : (
                     <div>No orders found</div>
@@ -77,10 +77,10 @@ const CardOrder: FC<CardOrderProps> = ({ data }) => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-2 w-1/2">
-                    {productIds.map((id: number) => {
+                    {productIds.map((id: number,index) => {
                         const product = products.find(p => p.id === id);
                         return product ? (
-                            <div key={id} className="w-16 h-16 flex items-center justify-center bg-white rounded-lg border border-gray-200 p-1">
+                            <div key={index} className="w-16 h-16 flex items-center justify-center bg-white rounded-lg border border-gray-200 p-1">
                                 <img
                                     src={product.photo}
                                     alt={product.title}

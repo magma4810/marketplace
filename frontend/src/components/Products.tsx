@@ -5,14 +5,25 @@ import { useSelector } from "react-redux";
 import { CardProps } from "../../types";
 import { Header } from "./Header";
 import { Loading } from "./Loading";
+import { Counter } from "./Counter";
+import { addProductsID, updateProductsID } from "../store/user.slice";
+import { getCart } from "../store/user.slice";
 
 export const Products: FC = () => {
     const dispatch = useAppDispatch();
     const loading = useSelector((store: StoreApp) => store.products.loading);
     const products = useSelector((store: StoreApp) => store.products.products);
+    const productsID = useSelector((store: StoreApp) => store.user.productsID);
+    const username = useSelector((store: StoreApp) => store.user.username);
     useEffect(() => {
-        dispatch(getProducts())
+        dispatch(getProducts());
+        dispatch(getCart(username));
     }, [])
+    useEffect(() => {
+        if(!loading){
+            dispatch(updateProductsID({username:username,productsID:productsID}));
+        }
+    }, [productsID])
     return (
         <>
             <Header/>
@@ -28,6 +39,10 @@ export const Products: FC = () => {
 }
 
 const Card: FC<CardProps> = ({ data }) => {
+    const productsID = useSelector((store: StoreApp) => store.user.productsID);
+    const count = productsID.filter(itemID => itemID === data.id).length;
+    
+    const dispatch = useAppDispatch();
     return (
         <div className="bg-white w-[25vw] h-[30vw] rounded-4xl m-2.5 flex flex-col justify-between items-center p-3.5">
             <div className="w-45 h-45 flex items-center justify-center rounded-lg">
@@ -41,31 +56,14 @@ const Card: FC<CardProps> = ({ data }) => {
             
             <div className="flex justify-evenly w-full">
                 <span>Цена: {data.price}₽</span>
-                <span>В наличии: {data.count}</span>
+                <span>В наличии: {data.count-count}</span>
             </div>
-            <div className="flex items-center text-2xl">
-                                <button 
-                                    className={`px-4 py-2 rounded-lg ${count > 0 
-                                        ? "bg-gray-200 hover:bg-gray-300 cursor-pointer" 
-                                        : "bg-gray-100 cursor-not-allowed"}`}
-                                    onClick={decrement}
-                                    disabled={count <= 0}
-                                >
-                                    -
-                                </button>
-                                
-                                <span className="px-6 py-2">{count}</span>
-                                
-                                <button 
-                                    className={`px-4 py-2 rounded-lg ${count < product.count 
-                                        ? "bg-gray-200 hover:bg-gray-300 cursor-pointer" 
-                                        : "bg-gray-100 cursor-not-allowed"}`}
-                                    onClick={increment}
-                                    disabled={count >= product.count}
-                                >
-                                    +
-                                </button>
-                            </div>
+            {count > 0 ? <Counter id={data.id}/> : 
+                <button onClick={() => dispatch(addProductsID(data.id))} className="cursor-pointer bg-amber-100/50 rounded-4xl w-[70%] h-[10%] hover:bg-amber-200/50 transition-colors">
+                    Добавить в корзину
+                </button>
+            }
+            
         </div>
     )
 }

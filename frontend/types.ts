@@ -32,11 +32,18 @@ export type IconProps = {
 
   export type Orders = {
     id: number;
-    productsID: number;
+    productsID: Array<number>;
     active: boolean;
     deliveryAdress: string;
     deliveryDate: string;
     orderDate: string;
+    cost: number;
+  };
+
+  export type OrderInfo = {
+    username: string;
+    productsID: Array<number>;
+    deliveryAdress: string;
     cost: number;
   };
 
