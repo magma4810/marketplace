@@ -15,7 +15,7 @@ export const Users = sequelize.define('Users', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  cart: {
+  productsID: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
     allowNull: false

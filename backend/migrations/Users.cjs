@@ -14,7 +14,7 @@ module.exports = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  cartID: {
+  productsID: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
     allowNull: false

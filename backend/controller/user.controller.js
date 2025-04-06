@@ -63,11 +63,26 @@ class UserController {
             res.status(500).json({ error: 'Ошибка при обновлении заказов' });
         }
     }
+    async getOrderByID(req, res) {
+        const { id } = req.params;
+        try {
+            const [getData, metadata] = await sequelize.query(
+                `select * from "Orders" where id=:id`,
+                {
+                    replacements: {id}
+                }
+            );
+            res.json(getData);
+        } catch (error) {
+            console.error('Ошибка при получении заказа', error);
+            res.status(500).json({ error: 'Ошибка при получении заказа' });
+        }
+    }
     async getCart(req, res) {
         const { username } = req.params;
         try {
             const [getData, metadata] = await sequelize.query(
-                `select "cartID" from "Users" where username=:username`,
+                `select "productsID" from "Users" where username=:username`,
                 {
                     replacements: {username}
                 }
@@ -83,7 +98,7 @@ class UserController {
         try {
             const [getData, metadata] = await sequelize.query(
                 `UPDATE "Users" 
-                SET "cartID" = ARRAY[]::integer[]
+                SET "productsID" = ARRAY[]::integer[]
                 WHERE username = :username`,
                 {
                     replacements: {username}
@@ -101,7 +116,7 @@ class UserController {
         try {
             const [getData, metadata] = await sequelize.query(
                 `UPDATE "Users" 
-                SET "cartID" = ARRAY[:cart]
+                SET "productsID" = ARRAY[:cart]
                 WHERE username = :username`,
                 {
                     replacements: {username,cart}

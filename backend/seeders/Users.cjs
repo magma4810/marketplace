@@ -4,19 +4,19 @@ module.exports = {
         {
             username: "vannesal",
             password: "qwerty123",
-            cartID: [1,6,3,9,10],
+            productsID: [1,6,3,9,10],
             ordersID: [1,3]
         },
         {
             username: "fondapho",
             password: "qwerty123",
-            cartID: [2,10,3,12],
+            productsID: [2,10,3,12],
             ordersID: [2,5]
         },
         {
             username: "ermesanl",
             password: "qwerty123",
-            cartID: [3,7,17,11,13],
+            productsID: [3,7,11,11,13],
             ordersID: [4,6,7]
         },
     ], {});

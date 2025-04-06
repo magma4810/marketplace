@@ -7,6 +7,7 @@ userRouter.get('/products', userController.products);
 userRouter.get('/products/:id', userController.productsById);
 userRouter.get('/myOrders/:username', userController.getMyOrders);
 userRouter.post('/myOrders/:username', userController.updateMyOrders);
+userRouter.get('/getOrderByID/:id', userController.getOrderByID);
 userRouter.get('/cart/:username', userController.getCart);
 userRouter.post('/cart/:username', userController.clearCart);
 userRouter.put('/cart/:username', userController.updateCart);
