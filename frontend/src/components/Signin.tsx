@@ -70,13 +70,11 @@ export const Signin: FC = () => {//reacthookform
         className="w-full max-w-md"
       >
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          {/* Декоративная верхняя часть */}
           <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-center">
             <h2 className="text-3xl font-bold text-white">Добро пожаловать</h2>
             <p className="text-indigo-100 mt-2">Введите свои данные для входа</p>
           </div>
 
-          {/* Форма */}
           <form onSubmit={handleSubmit} className="p-8 space-y-6">
             {error && (
               <motion.div
@@ -89,7 +87,6 @@ export const Signin: FC = () => {//reacthookform
             )}
 
             <div className="space-y-4">
-              {/* Поле username */}
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
                   Имя пользователя
@@ -113,7 +110,6 @@ export const Signin: FC = () => {//reacthookform
                 </div>
               </div>
               </div>
-              {/* Поле password */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                   Пароль
@@ -153,8 +149,6 @@ export const Signin: FC = () => {//reacthookform
                 </div>
               </div>
 
-
-              {/* Кнопка отправки */}
               <div>
                 <motion.button
                   type="submit"
@@ -178,7 +172,6 @@ export const Signin: FC = () => {//reacthookform
               </div>
           </form>
 
-          {/* Дополнительные ссылки */}
           <div className="px-8 pb-6 text-center">
             <p className="mt-2 text-sm text-gray-600">
               Ещё нет аккаунта?{' '}

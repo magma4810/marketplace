@@ -1,15 +1,15 @@
 import { FC, useEffect, useState } from "react";
-import { getProducts } from "../store/products.slice";
+import { changeLoading, getProducts } from "../store/products.slice";
 import { StoreApp, useAppDispatch } from "../store";
 import { useSelector } from "react-redux";
 import { CardProps } from "../../types";
 import { Header } from "./Header";
 import { Loading } from "./Loading";
-import { updateProductsID } from "../store/user.slice";
+import { getCart, updateProductsID } from "../store/user.slice";
 import { ProductModal } from "./ProductModal";
 import { AddToCart } from "./AddToCart";
 
-export const Products: FC = () => {
+export const Products: FC = () => {//qwerty123
     const dispatch = useAppDispatch();
     const loading = useSelector((store: StoreApp) => store.products.loading);
     const products = useSelector((store: StoreApp) => store.products.products);
@@ -18,9 +18,10 @@ export const Products: FC = () => {
     const isAuthenticated = useSelector((store: StoreApp) => store.user.isAuthenticated);
     useEffect(() => {
         dispatch(getProducts());
+        dispatch(getCart(username));
     }, [])
     useEffect(() => {
-        if (!loading && isAuthenticated) {
+        if (!loading && isAuthenticated && productsID.length !== 0) {
             dispatch(updateProductsID({ username: username, productsID: productsID }));
         }
     }, [productsID])

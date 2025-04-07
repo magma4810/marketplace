@@ -141,7 +141,6 @@ export const logoutFetch = createAsyncThunk(
     }
 
     const data = await response.json();
-
     dispatch(logout());
     return data;
   })
@@ -149,6 +148,7 @@ export const logoutFetch = createAsyncThunk(
 export const getCart = createAsyncThunk(
   'user/getCart',
   async (username: string, { dispatch }) => {
+    dispatch(changeLoading(true));
     const response = await fetch(`http://localhost:3000/api/cart/${username}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
