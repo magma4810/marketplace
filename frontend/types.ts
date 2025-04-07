@@ -1,9 +1,8 @@
 export type IconProps = {
-    src: string;
-    href: string;
-    handleClick: () => {};
-  };
-
+  src: string;
+  href: string;
+  handleClick?: () => void;
+};
   export type CardProps = {
     data: Products;
   };
@@ -28,6 +27,7 @@ export type IconProps = {
     productsID: Array<number>;
     ordersID: Array<number>;
     loading: boolean;
+    isAuthenticated: boolean;
   };
 
   export type Orders = {

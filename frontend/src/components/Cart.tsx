@@ -1,4 +1,4 @@
-import { FC, useEffect,useState,useMemo } from "react";
+import { FC, useEffect,useMemo } from "react";
 import { Header } from "./Header";
 import { StoreApp, useAppDispatch } from "../store";
 import { useSelector } from "react-redux";
@@ -13,7 +13,6 @@ export const Cart: FC = () => {
     const loadingProducts = useSelector((store: StoreApp) => store.products.loading);
     const loadingProductsID = useSelector((store: StoreApp) => store.products.loading);
     const productsID = useSelector((store: StoreApp) => store.user.productsID);
-    const ordersID = useSelector((store: StoreApp) => store.user.ordersID);
     const products = useSelector((store: StoreApp) => store.products.products);
     const username = useSelector((store: StoreApp) => store.user.username);
     const uniqueProductsID = [...new Set(productsID)];
@@ -40,7 +39,7 @@ export const Cart: FC = () => {
         cost: totalSum,
         username: username
     }
-    console.log(ordersID)
+
     return (
         <>
             <Header />

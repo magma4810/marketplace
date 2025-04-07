@@ -161,6 +161,26 @@ class UserController {
             });
         });
     }
+    async getUserPasswordByName(req, res) {
+        const { username } = req.params;
+        try {
+            const [getData] = await sequelize.query(
+                `SELECT password FROM "Users" WHERE username = :username`,
+                {
+                    replacements: { username }
+                }
+            );
+
+            if (getData.length === 0) {
+                return res.status(404).json({ error: 'Пользователь не найден' });
+            }
+
+            res.json(getData[0]);
+        } catch (error) {
+            console.error('Ошибка при получении информации пользователя', error);
+            res.status(500).json({ error: 'Ошибка при получении информации пользователя' });
+        }
+    }
     async logout(req, res) {
         try {
             console.log('Cookies before clear:', req.cookies);
@@ -169,7 +189,7 @@ class UserController {
                 path: '/',
                 httpOnly: true,
             });
-
+            
             req.session.destroy((err) => {
                 if (err) {
                     console.error('Session destruction error:', err);

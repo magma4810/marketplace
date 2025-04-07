@@ -2,17 +2,24 @@ import { StoreApp } from ".";
 import { UserState } from "../../types";
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
 const initialState: UserState = {
-  username: "ermesanl",
+  username: sessionStorage.getItem('username') || "",
   password: "",
   productsID: [],
   ordersID: [],
   loading: true,
+  isAuthenticated:  sessionStorage.getItem('isAuthenticated') === "true" || false
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    changeUsername: (state, action: PayloadAction<string>) => {
+      state.username = action.payload;
+    },
+    changeIsAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload;
+    },
     changeProductsID: (state, action: PayloadAction<Array<number>>) => {
       state.productsID = action.payload;
     },
@@ -39,9 +46,12 @@ export const userSlice = createSlice({
       state.loading = action.payload;
     },
     logout: (state) => {
+      sessionStorage.removeItem('username');
+      sessionStorage.removeItem('isAuthenticated');
       state.username = '';
       state.password = '';
       state.loading = false;
+      state.isAuthenticated = false;
       state.ordersID = [];
       state.productsID = [];
     },
@@ -117,7 +127,7 @@ export const getOrders = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk(
+export const logoutFetch = createAsyncThunk(
   'user/logout',
   async (_, { dispatch }) => {
     const response = await fetch(`http://localhost:3000/api/logout`, {
@@ -157,4 +167,4 @@ export const getCart = createAsyncThunk(
 );
 
 export const userReducer = userSlice.reducer;
-export const { changeProductsID,addOrdersID,clearProductsID, changeLoading, changeOrdersID, deleteProductsID, addProductsID } = userSlice.actions;
+export const { changeProductsID,changeIsAuthenticated,changeUsername,logout,addOrdersID,clearProductsID, changeLoading, changeOrdersID, deleteProductsID, addProductsID } = userSlice.actions;
