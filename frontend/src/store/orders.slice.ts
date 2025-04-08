@@ -1,6 +1,6 @@
 import { OrdersState, Orders, OrderInfo } from "../../types";
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
-import { addOrdersID, changeOrdersID, clearProductsID, updateMyOrders } from "./user.slice";
+import { addOrdersID, clearProductsID, updateMyOrders } from "./user.slice";
 const initialState: OrdersState = {
   orders: [],
   loading: true,
@@ -12,6 +12,9 @@ export const ordersSlice = createSlice({
   reducers: {
     addOrders: (state, action: PayloadAction<Orders[]>) => {
       state.orders = [...state.orders, ...action.payload];
+    },
+    changeOrders: (state, action: PayloadAction<Orders[]>) => {
+      state.orders = action.payload;
     },
     changeLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -86,4 +89,4 @@ export const createOrder = createAsyncThunk(
 
 
 export const ordersReducer = ordersSlice.reducer;
-export const { addOrders, changeLoading } = ordersSlice.actions;
+export const { addOrders, changeOrders, changeLoading } = ordersSlice.actions;

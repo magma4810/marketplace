@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { StoreApp, useAppDispatch } from "../store";
 import { getOrders } from "../store/user.slice";
 import { useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { CardOrderProps } from "../../types";
 import { changeLoading, getOrderByID } from "../store/orders.slice";
 import { getProducts } from "../store/products.slice";
 import { EmptyOrders } from "./EmptyOrders";
+import { SortBy } from "./SortBy";
 
 export const MyOrders: FC = () => {
     const dispatch = useAppDispatch();
@@ -17,32 +18,79 @@ export const MyOrders: FC = () => {
     const loadingOrdersID = useSelector((store: StoreApp) => store.user.loading);
     const loadingOrders = useSelector((store: StoreApp) => store.orders.loading);
     const isLoading = loadingOrdersID || loadingOrders;
+    const [sortBy, setSortBy] = useState<'id' | 'price'>('price');
+    const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
     useEffect(() => {
         dispatch(getOrders(username));
         dispatch(getProducts());
-      }, []);
+    }, []);
 
-      useEffect(() => {
-          if (!loadingOrdersID) {
-                if(ordersID.length !== 0){
-                    ordersID.map((id: number) => dispatch(getOrderByID(id)))
-                }else{
-                    dispatch(changeLoading(false));
-                }
-          }
-      }, [dispatch, username, ordersID.length,loadingOrdersID]);
+    useEffect(() => {
+        if (!loadingOrdersID) {
+            if (ordersID.length !== 0) {
+                ordersID.map((id: number) => dispatch(getOrderByID(id)))
+            } else {
+                dispatch(changeLoading(false));
+            }
+        }
+    }, [dispatch, username, ordersID.length, loadingOrdersID]);
+    const sortedOrders = useMemo(() => {
+        return [...orders].sort((a, b) => {
+            if (sortBy === 'id') {
+                return sortDirection === 'asc' ? a.id - b.id : b.id - a.id;
+            } else {
+                return sortDirection === 'asc'
+                    ? a.cost - b.cost
+                    : b.cost - a.cost;
+            }
+        });
+    }, [orders, sortBy, sortDirection]);
     return (
         <>
             <Header />
-            <div className=" flex flex-col justify-between w-[100vw] h-[100%] p-[7vw]">
+            <div className=" flex flex-col justify-between w-[100vw] h-[100%] p-[3vw]">
                 {isLoading ? (
                     <Loading />
-                ) : orders.length !== 0 ? (
-                    orders.map((order,index) => (
+                ) : sortedOrders.length !== 0 ? (
+                    <>
+                        <div className="flex gap-4 mb-6 justify-center items-center h-[50%]">
+                            <SortBy
+                                active={sortBy === 'id'}
+                                direction={sortBy === 'id' ? sortDirection : undefined}
+                                onClick={() => {
+                                    if (sortBy === 'id') {
+                                        setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+                                    } else {
+                                        setSortBy('id');
+                                        setSortDirection('asc');
+                                    }
+                                }}
+                            >
+                                Sort by Date
+                            </SortBy>
+
+                            <SortBy
+                                active={sortBy === 'price'}
+                                direction={sortBy === 'price' ? sortDirection : undefined}
+                                onClick={() => {
+                                    if (sortBy === 'price') {
+                                        setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+                                    } else {
+                                        setSortBy('price');
+                                        setSortDirection('asc');
+                                    }
+                                }}
+                            >
+                                Sort by Price
+                            </SortBy>
+
+                        </div>
+                    {sortedOrders.map((order,index) => (
                         <CardOrder data={order} key={index} />
-                    ))
+                        ))}
+                    </>
                 ) : (
-                    <EmptyOrders/>
+                    <EmptyOrders />
                 )}
             </div>
         </>
@@ -78,7 +126,7 @@ const CardOrder: FC<CardOrderProps> = ({ data }) => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-2 w-1/2">
-                    {productIds.map((id: number,index) => {
+                    {productIds.map((id: number, index) => {
                         const product = products.find(p => p.id === id);
                         return product ? (
                             <div key={index} className="w-16 h-16 flex items-center justify-center bg-white rounded-lg border border-gray-200 p-1">
