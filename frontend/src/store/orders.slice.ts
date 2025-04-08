@@ -1,6 +1,6 @@
 import { OrdersState, Orders, OrderInfo } from "../../types";
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
-import { addOrdersID, clearProductsID, updateMyOrders } from "./user.slice";
+import { addOrdersID, changeOrdersID, clearProductsID, updateMyOrders } from "./user.slice";
 const initialState: OrdersState = {
   orders: [],
   loading: true,
@@ -30,7 +30,7 @@ export const getOrderByID = createAsyncThunk(
     });
 
     if (!response.ok) {
-      throw new Error('Не удалось загрузить данные о корзине');
+      throw new Error('Не удалось загрузить данные о товаре');
     }
 
     const data = await response.json();

@@ -21,6 +21,7 @@ export const productsSlice = createSlice({
   export const getProducts = createAsyncThunk(
     'user/getProducts',
     async (_, { dispatch }) => {
+      dispatch(changeLoading(true));
       const response = await fetch(`http://localhost:3000/api/products/`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },

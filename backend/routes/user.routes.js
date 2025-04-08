@@ -16,4 +16,4 @@ userRouter.post('/logout', userController.logout);
 userRouter.post('/signup', userController.signup);
 userRouter.get('/checkAuthUser', userController.checkAuthUser);
 userRouter.post('/createOrder', userController.createOrder);
-userRouter.post('/getUserPasswordByName/:username', userController.getUserPasswordByName);
+userRouter.get('/getUserInfoByName/:username', userController.getUserInfoByName);

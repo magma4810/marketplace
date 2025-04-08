@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { changeLoading, getProducts } from "../store/products.slice";
+import { getProducts } from "../store/products.slice";
 import { StoreApp, useAppDispatch } from "../store";
 import { useSelector } from "react-redux";
 import { CardProps } from "../../types";
@@ -9,7 +9,7 @@ import { getCart, updateProductsID } from "../store/user.slice";
 import { ProductModal } from "./ProductModal";
 import { AddToCart } from "./AddToCart";
 
-export const Products: FC = () => {//qwerty123
+export const Products: FC = () => {
     const dispatch = useAppDispatch();
     const loading = useSelector((store: StoreApp) => store.products.loading);
     const products = useSelector((store: StoreApp) => store.products.products);

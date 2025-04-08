@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import { Header } from "./Header";
 import { Loading } from "./Loading";
 import { CardOrderProps } from "../../types";
-import { getOrderByID } from "../store/orders.slice";
+import { changeLoading, getOrderByID } from "../store/orders.slice";
 import { getProducts } from "../store/products.slice";
+import { EmptyOrders } from "./EmptyOrders";
 
 export const MyOrders: FC = () => {
     const dispatch = useAppDispatch();
@@ -15,33 +16,33 @@ export const MyOrders: FC = () => {
     const orders = useSelector((store: StoreApp) => store.orders.orders);
     const loadingOrdersID = useSelector((store: StoreApp) => store.user.loading);
     const loadingOrders = useSelector((store: StoreApp) => store.orders.loading);
-    useEffect(() => {
-        const fetchData = async () => {
-            await dispatch(getOrders(username));
-            await dispatch(getProducts());
-            if (ordersID.length > 0) {
-                ordersID.forEach((id: number) => {
-                    dispatch(getOrderByID(id));
-                });
-            }
-        };
-        fetchData();
-
-    }, [dispatch, username, ordersID.length]);
     const isLoading = loadingOrdersID || loadingOrders;
+    useEffect(() => {
+        dispatch(getOrders(username));
+        dispatch(getProducts());
+      }, []);
 
+      useEffect(() => {
+          if (!loadingOrdersID) {
+                if(ordersID.length !== 0){
+                    ordersID.map((id: number) => dispatch(getOrderByID(id)))
+                }else{
+                    dispatch(changeLoading(false));
+                }
+          }
+      }, [dispatch, username, ordersID.length,loadingOrdersID]);
     return (
         <>
             <Header />
             <div className=" flex flex-col justify-between w-[100vw] h-[100%] p-[7vw]">
                 {isLoading ? (
                     <Loading />
-                ) : orders.length > 0 ? (
+                ) : orders.length !== 0 ? (
                     orders.map((order,index) => (
                         <CardOrder data={order} key={index} />
                     ))
                 ) : (
-                    <div>No orders found</div>
+                    <EmptyOrders/>
                 )}
             </div>
         </>

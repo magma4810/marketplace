@@ -23,20 +23,19 @@ export const Signin: FC = () => {//reacthookform
     setIsLoading(true);
 
     try {
-      const passwordUser = await fetch(`http://localhost:3000/api/getUserPasswordByName/${username}`, {
-        method: 'POST',
+      const userInfo = await fetch(`http://localhost:3000/api/getUserInfoByName/${username}`, {
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username }),
       });
 
-      if (!passwordUser.ok) {
-        const errorData = await passwordUser.json().catch(() => ({}));
+      if (!userInfo.ok) {
+        const errorData = await userInfo.json().catch(() => ({}));
         throw new Error(errorData.message || 'Ошибка при проверке пароля');
       }
   
-      const passwordData: { password: string } = await passwordUser.json();
+      const data: { password: string,address: string } = await userInfo.json();
       
-      if (passwordData.password !== password) {
+      if (data.password !== password) {
         throw new Error('Неверный пароль или логин');
       }
       const response = await fetch('http://localhost:3000/api/login', {
@@ -46,7 +45,7 @@ export const Signin: FC = () => {//reacthookform
       });
 
       if (!response.ok) throw new Error('Ошибка авторизации');
-
+      sessionStorage.setItem('address', data.address);
       navigate('/'); 
     } catch (err) {
       console.error('Authentication error:', err);

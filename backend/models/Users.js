@@ -25,6 +25,10 @@ export const Users = sequelize.define('Users', {
     defaultValue: [],
     allowNull: false
   },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
 }, {
     timestamps: false 
   });

@@ -24,6 +24,10 @@ module.exports = {
     defaultValue: [],
     allowNull: false
   },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
 });
 },
 

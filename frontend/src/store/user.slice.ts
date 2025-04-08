@@ -7,7 +7,8 @@ const initialState: UserState = {
   productsID: [],
   ordersID: [],
   loading: true,
-  isAuthenticated:  sessionStorage.getItem('isAuthenticated') === "true" || false
+  isAuthenticated:  sessionStorage.getItem('isAuthenticated') === "true" || false,
+  address: sessionStorage.getItem('address') || "",
 };
 
 export const userSlice = createSlice({
@@ -58,6 +59,29 @@ export const userSlice = createSlice({
   },
 });
 
+export const getOrders = createAsyncThunk(
+  'user/getOrders',
+  async (username: string, { dispatch }) => {
+    dispatch(changeLoading(true));
+    const response = await fetch(`http://localhost:3000/api/myOrders/${username}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include"
+    });
+
+    if (!response.ok) {
+      throw new Error('Не удалось загрузить данные о заказах');
+    }
+
+    const data = await response.json();
+    
+    dispatch(changeOrdersID(data[0].ordersID));
+    dispatch(changeLoading(false));
+    return data;
+  }
+);
+
+
 export const updateMyOrders = createAsyncThunk(
   'user/updateMyOrders',
   async (payload: { username: string }, { getState }) => {
@@ -107,25 +131,6 @@ export const updateProductsID = createAsyncThunk(
   }
 );
 
-export const getOrders = createAsyncThunk(
-  'user/getOrders',
-  async (username: string, { dispatch }) => {
-    const response = await fetch(`http://localhost:3000/api/myOrders/${username}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include"
-    });
-
-    if (!response.ok) {
-      throw new Error('Не удалось загрузить данные о заказах');
-    }
-
-    const data = await response.json();
-    dispatch(changeOrdersID(data[0].ordersID));
-    dispatch(changeLoading(false));
-    return data;
-  }
-);
 
 export const logoutFetch = createAsyncThunk(
   'user/logout',

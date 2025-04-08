@@ -161,11 +161,11 @@ class UserController {
             });
         });
     }
-    async getUserPasswordByName(req, res) {
+    async getUserInfoByName(req, res) {
         const { username } = req.params;
         try {
             const [getData] = await sequelize.query(
-                `SELECT password FROM "Users" WHERE username = :username`,
+                `SELECT password,address FROM "Users" WHERE username = :username`,
                 {
                     replacements: { username }
                 }
@@ -227,18 +227,18 @@ class UserController {
         }
     }
     async signup(req, res) {
-        const { username, password } = req.body;
+        const { username, password,deliveryAdress } = req.body;
         try {
             const [getData, metadata] = await sequelize.query(
-                'INSERT INTO "Users" (username, password) VALUES (:username, :password)',
+                'INSERT INTO "Users" (username, password,address) VALUES (:username, :password,:deliveryAdress)',
                 {
-                    replacements: { username, password }
+                    replacements: { username, password,deliveryAdress }
                 }
             );
             res.json(getData);
         } catch (error) {
-            console.error('Ошибка при создании соискателя', error);
-            res.status(500).json({ error: 'Ошибка при создании соискателя' });
+            console.error('Ошибка при создании пользователя', error);
+            res.status(500).json({ error: 'Ошибка при создании пользователя' });
         }
     }
 

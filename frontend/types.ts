@@ -28,6 +28,7 @@ export type IconProps = {
     ordersID: Array<number>;
     loading: boolean;
     isAuthenticated: boolean;
+    address: string;
   };
 
   export type Orders = {

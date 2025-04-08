@@ -43,8 +43,7 @@ export const Signup: FC = () => {
 
     setIsLoading(true);
     try {
-      // Ваш запрос регистрации
-      const response = await fetch('/api/register', {
+      const response = await fetch('http://localhost:3000/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -56,7 +55,7 @@ export const Signup: FC = () => {
 
       if (!response.ok) throw new Error('Ошибка регистрации');
 
-      window.location.href = '/profile';
+      window.location.href = '/signin';
     } catch (err) {
       console.error('Registration error:', err);
       const message = err instanceof Error ? err.message : 'Registration failed';
@@ -75,13 +74,11 @@ export const Signup: FC = () => {
         className="w-full max-w-md"
       >
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          {/* Декоративная верхняя часть */}
           <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-center">
             <h2 className="text-3xl font-bold text-white">Создайте аккаунт</h2>
             <p className="text-indigo-100 mt-2">Заполните форму для регистрации</p>
           </div>
 
-          {/* Форма */}
           <form onSubmit={handleSubmit} className="p-8 space-y-4">
             {errors.form && (
               <motion.div
@@ -93,7 +90,6 @@ export const Signup: FC = () => {
               </motion.div>
             )}
 
-            {/* Поле username */}
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
                 Имя пользователя
@@ -115,7 +111,6 @@ export const Signup: FC = () => {
               {errors.username && <p className="mt-1 text-sm text-red-600">{errors.username}</p>}
             </div>
 
-            {/* Поле password */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Пароль
@@ -150,7 +145,6 @@ export const Signup: FC = () => {
               {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password}</p>}
             </div>
 
-            {/* Поле repeatPassword */}
             <div>
               <label htmlFor="repeatPassword" className="block text-sm font-medium text-gray-700 mb-1">
                 Повторите пароль
@@ -185,7 +179,6 @@ export const Signup: FC = () => {
               {errors.repeatPassword && <p className="mt-1 text-sm text-red-600">{errors.repeatPassword}</p>}
             </div>
 
-            {/* Поле deliveryAdress */}
             <div>
               <label htmlFor="deliveryAdress" className="block text-sm font-medium text-gray-700 mb-1">
                 Адрес доставки
@@ -207,7 +200,6 @@ export const Signup: FC = () => {
               {errors.deliveryAdress && <p className="mt-1 text-sm text-red-600">{errors.deliveryAdress}</p>}
             </div>
 
-            {/* Кнопка отправки */}
             <div className="pt-2">
               <motion.button
                 type="submit"
@@ -231,7 +223,6 @@ export const Signup: FC = () => {
             </div>
           </form>
 
-          {/* Ссылка на авторизацию */}
           <div className="px-8 pb-6 text-center">
             <p className="text-sm text-gray-600">
               Уже есть аккаунт?{' '}

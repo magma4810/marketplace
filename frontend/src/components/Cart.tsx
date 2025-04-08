@@ -3,16 +3,16 @@ import { Header } from "./Header";
 import { StoreApp, useAppDispatch } from "../store";
 import { useSelector } from "react-redux";
 import { Loading } from "./Loading";
-import { getProducts } from "../store/products.slice";
+import { changeLoading, getProducts } from "../store/products.slice";
 import { getCart, getOrders, updateProductsID } from "../store/user.slice";
 import { Counter } from "./Counter";
 import { createOrder } from "../store/orders.slice";
 
 
 export const Cart: FC = () => {
-    const loadingProducts = useSelector((store: StoreApp) => store.products.loading);
     const loadingProductsID = useSelector((store: StoreApp) => store.products.loading);
     const productsID = useSelector((store: StoreApp) => store.user.productsID);
+    const address = useSelector((store: StoreApp) => store.user.address);
     const products = useSelector((store: StoreApp) => store.products.products);
     const username = useSelector((store: StoreApp) => store.user.username);
     const uniqueProductsID = [...new Set(productsID)];
@@ -32,10 +32,10 @@ export const Cart: FC = () => {
         if(!loadingProductsID){
             dispatch(updateProductsID({username:username,productsID:productsID}));
         }
-    }, [productsID]);
+    }, [productsID,loadingProductsID]);
     const orderInfo = {
         productsID: productsID,
-        deliveryAdress: 'Belloruskya 69',
+        deliveryAdress: address,
         cost: totalSum,
         username: username
     }
@@ -45,7 +45,7 @@ export const Cart: FC = () => {
             <Header />
             <div className=" w-[100vw] h-full flex p-[2vw]">
                     <div className=" flex flex-wrap justify-between items-center w-4/6">
-                        {loadingProducts && loadingProductsID ? (
+                        { loadingProductsID ? (
                             <Loading />
                         ) : productsID.length !== 0 ? uniqueProductsID.map((id: number, index) => (
                             <Card id={id} key={index} />

@@ -7,6 +7,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Products } from './components/Products';
 import { MyOrders } from './components/MyOrders';
 import { Cart } from './components/Cart';
+import { ProductDetail } from './components/ProductDetail';
 
 export const App: FC = () => {
 
@@ -16,6 +17,7 @@ export const App: FC = () => {
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
         <Route path="/" element={<Products/>}/>
+        <Route path="/products/:id" element={<><Products /><ProductDetail/></>} />
         <Route element={<ProtectedRoute />}>
           <Route path="/my-orders" element={<MyOrders/>}/>
           <Route path="/cart" element={<Cart/>}/>
