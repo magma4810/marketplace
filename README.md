@@ -46,6 +46,6 @@
 
 ### Установка
 ```bash
-git clone https://github.com/ваш-логин/marketplace.git
+git clone https://github.com/ваш-логин/marketplace.git](https://github.com/magma4810/marketplace.git
 cd marketplace
 npm install
