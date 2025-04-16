@@ -33,6 +33,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
   exit={{ opacity: 0 }}
   className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70"
   onClick={onClose}
+  data-testid="modal-overlay"
 >
   <motion.div
     initial={{ y: 50, opacity: 0 }}
@@ -41,6 +42,7 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
     transition={{ type: 'spring', damping: 25 }}
     className="relative w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden h-[50vh]"
     onClick={(e) => e.stopPropagation()}
+    data-testid="modal-content"
   >
                 <div className="h-full flex flex-col overflow-hidden">
           <button
@@ -67,11 +69,10 @@ export const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) =>
                   className="w-full h-full object-contain object-center"
                 />
               </div>
-              
             </div>
 
             <div className="md:w-1/2 p-6 md:border-l border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">{product.title}</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2" data-testid="title">{product.title}</h2>
               
               <div className="flex items-center mb-4">
                 <span className="text-3xl font-bold text-gray-900 mr-4">{product.price}₽</span>

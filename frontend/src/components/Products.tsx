@@ -122,16 +122,11 @@ const Card: FC<CardProps> = ({ data }) => {
     const [open, setOpen] = useState(false);
     const productsID = useSelector((store: StoreApp) => store.user.productsID);
     const count = productsID.filter(itemID => itemID === data.id).length;
+
     return (
 
         <div className="bg-white w-[25vw] h-[30vw] rounded-4xl m-2.5  p-3.5">
             <div onClick={() => setOpen(true)} className=" flex flex-col justify-between items-center h-4/5">
-
-                <ProductModal
-                    product={data}
-                    isOpen={open}
-                    onClose={() => setOpen(false)}
-                />
                 <div className="w-45 h-45 flex items-center justify-center rounded-lg">
                     <img className="max-w-full max-h-full object-contain" src={data.photo} alt={data.title} />
                 </div>
@@ -149,6 +144,12 @@ const Card: FC<CardProps> = ({ data }) => {
             <div className=" h-1/5 flex justify-center items-center">
                 <AddToCart data={data} />
             </div>
+
+            <ProductModal
+                    product={data}
+                    isOpen={open}
+                    onClose={() => setOpen(false)}
+                />
         </div>
     )
 }

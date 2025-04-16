@@ -33,7 +33,7 @@ export const Counter: FC<{id: number;}> = ({...props}) => {
                 -
             </button>
 
-            <span className="px-6 py-2">{count}</span>
+            <span className="px-6 py-2" data-testid="counter">{count}</span>
 
             <button
                 className={`px-4 py-2 rounded-lg ${count < product!.count

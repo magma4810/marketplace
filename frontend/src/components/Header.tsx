@@ -22,14 +22,14 @@ export const Header: FC = () => {
                 <div className="flex justify-between w-[20%]">
                     <Icon href="/my-orders" src={my_orders}/>
                     <Icon href="/cart" src={cart}/>
-                    <Icon href="/signin" src={logout}/>
+                    <Icon href="/signin" src={logout} data_testid="logout"/>
                 </div>
             }
         </div>
     );
 };
 
-const Icon: FC<IconProps> = ({ href, src }) => {
+const Icon: FC<IconProps> = ({ href, src,data_testid }) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const onClick = (e: React.MouseEvent) => {
@@ -41,7 +41,7 @@ const Icon: FC<IconProps> = ({ href, src }) => {
     }
   
     return (
-      <a href={href} onClick={(e) => onClick(e)} className="block w-[3vw] h-auto">
+      <a href={href} onClick={(e) => onClick(e)} className="block w-[3vw] h-auto" data-testid={data_testid}>
         <img src={src} alt="" />
       </a>
     );

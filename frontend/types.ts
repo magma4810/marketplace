@@ -2,6 +2,7 @@ export type IconProps = {
   src: string;
   href: string;
   handleClick?: () => void;
+  data_testid?: string;
 };
   export type CardProps = {
     data: Products;

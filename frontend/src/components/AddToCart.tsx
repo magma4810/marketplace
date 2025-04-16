@@ -14,7 +14,7 @@ export const AddToCart: FC<{data: Products}> = ({data}) => {
     const dispatch = useAppDispatch();
     return (
         <>
-            { count > 0 ? <Counter id={data.id} /> :
+            { isAuthenticated && count > 0 ? <Counter id={data.id} /> :
                 <button onClick={() => isAuthenticated ? dispatch(addProductsID(data.id)) : navigate("/signin")} className="cursor-pointer bg-amber-100/50 rounded-4xl w-[70%] h-[50%] hover:bg-amber-200/50 transition-colors">
                     Добавить в корзину
                 </button>

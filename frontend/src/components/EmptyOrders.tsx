@@ -14,7 +14,7 @@ export const EmptyOrders: FC = () => {
             </div>
         </div>
         
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4" data-testid="empty">
           У вас пока нет заказов
         </h2>
         
@@ -25,6 +25,7 @@ export const EmptyOrders: FC = () => {
         <button
           onClick={() => navigate('/')}
           className="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          data-testid="emptyButton"
         >
           Перейти к покупкам
         </button>

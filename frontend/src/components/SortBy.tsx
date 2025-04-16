@@ -21,7 +21,7 @@ export const SortBy: FC<SortButtonProps> = ({
     >
         {children}
         {active && (
-            <span className="ml-2">
+            <span className="ml-2" data-testid="direction">
                 {direction === 'asc' ? '↑' : '↓'}
             </span>
         )}
