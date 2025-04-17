@@ -18,11 +18,11 @@
     "stylelint": "^16.18.0"
   },
   "lint-staged": {
-    "frontend/src/**/.{ts,tsx}": [
-      "eslint --fix --max-warnings=0",
+    "frontend/**/*.{ts,tsx}": [
+      "eslint --fix --max-warnings=0 --ignore-pattern '**/node_modules/**'",
       "prettier --write"
     ],
-    "frontend/src/**/.{css,scss}": [
+    "frontend/**/*.{css,scss}": [
       "stylelint --fix"
     ]
   }
