@@ -21,10 +21,10 @@ jobs:
         run: |
           npm install
           npm run build
-          
+
       - name: Deploy to production
         run: |
-            vercel deploy --prod -y \
+            npx vercel deploy --prod -y \
             --token=${{ secrets.VERCEL_TOKEN }} \
             --project=${{ secrets.VERCEL_PROJECT_ID }} \
             --confirm
