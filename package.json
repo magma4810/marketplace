@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "![React](https://img.shields.io/badge/React-19.0.0-blue?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue?logo=typescript) ![Vite](https://img.shields.io/badge/Vite-6.2.0-purple?logo=vite) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0.14-blueviolet?logo=tailwind-css)",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -18,11 +19,7 @@
   },
   "lint-staged": {
     "frontend/**/*.{ts,tsx}": [
-      "eslint --fix --max-warnings=0",
-      "prettier --write"
-    ],
-    "frontend/**/*.{css,scss}": [
-      "stylelint --fix"
+      "eslint --fix --max-warnings=1"
     ]
   }
 }

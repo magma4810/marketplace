@@ -32,6 +32,8 @@ export const CardProducts: FC<CardProps> = ({ data }) => {
           <span>В наличии: {data.count - count}</span>
         </div>
       </div>
+      
+
       <div className=" h-1/5 flex justify-center items-center">
         <AddToCart data={data} />
       </div>
