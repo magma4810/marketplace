@@ -5,12 +5,14 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "strict": true,
+    "skipLibCheck": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "react-router/dom": ["node_modules/react-router/dist/dom-export"]
     },
-    "types": ["jest", "node", "@testing-library/jest-dom"]
+    "types": ["jest", "node", "@testing-library/jest-dom"],
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
