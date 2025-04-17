@@ -1,5 +1,5 @@
 # 🛍️ Маркетплейс (Интернет-магазин)
-
+https://marketplace-frontend-vannesals-projects.vercel.app/
 ![React](https://img.shields.io/badge/React-19.0.0-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue?logo=typescript)
 ![Vite](https://img.shields.io/badge/Vite-6.2.0-purple?logo=vite)
