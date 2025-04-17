@@ -1,2 +1,0 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-export const SortBy = ({ active, direction, onClick, children }) => (_jsxs("button", { onClick: onClick, className: `px-4 py-2 rounded-lg transition-colors ${active ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`, children: [children, active && (_jsx("span", { className: "ml-2", "data-testid": "direction", children: direction === 'asc' ? '↑' : '↓' }))] }));
