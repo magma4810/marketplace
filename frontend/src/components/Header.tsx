@@ -18,7 +18,7 @@ export const Header: FC = () => {
       <div className="flex items-center justify-center">
         <Icon href="/" src={muscle} />
         <a href="/">
-          <span className="text-3xl">SportFuelMarket43s2</span>
+          <span className="text-3xl">SportFuelMarket432</span>
         </a>
       </div>
       {isAuthenticated && (
