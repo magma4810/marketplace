@@ -23,7 +23,7 @@ jobs:
           npm run build
       - name: Pull Vercel project settings
         run: |
-          vercel link --project ${{ secrets.VERCEL_PROJECT_ID }} --token ${{ secrets.VERCEL_TOKEN }}
+            npx vercel link --project ${{ secrets.VERCEL_PROJECT_ID }} --token ${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to Vercel
         run: |
           npx vercel --prod -y --token=${{ secrets.VERCEL_TOKEN }}
