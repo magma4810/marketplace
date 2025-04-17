@@ -6,6 +6,8 @@ const initialState: OrdersState = {
   loading: true,
 };
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const ordersSlice = createSlice({
   name: "orders",
   initialState,
@@ -26,7 +28,7 @@ export const ordersSlice = createSlice({
 export const getOrderByID = createAsyncThunk(
   'user/getOrderByID',
   async (id: number, { dispatch }) => {
-    const response = await fetch(`http://localhost:3000/api/getOrderByID/${id}`, {
+    const response = await fetch(`${API_URL}/getOrderByID/${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include"
@@ -52,7 +54,7 @@ export const createOrder = createAsyncThunk(
       const deliveryDate = new Date();
       deliveryDate.setDate(currentDate.getDate() + 2);
 
-      const orderResponse = await fetch(`http://localhost:3000/api/createOrder`, {
+      const orderResponse = await fetch(`${API_URL}/createOrder`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

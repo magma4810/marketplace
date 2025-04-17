@@ -11,6 +11,8 @@ const initialState: UserState = {
   address: sessionStorage.getItem('address') || "",
 };
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -63,7 +65,7 @@ export const getOrders = createAsyncThunk(
   'user/getOrders',
   async (username: string, { dispatch }) => {
     dispatch(changeLoading(true));
-    const response = await fetch(`http://localhost:3000/api/myOrders/${username}`, {
+    const response = await fetch(`${API_URL}/myOrders/${username}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include"
@@ -88,7 +90,7 @@ export const updateMyOrders = createAsyncThunk(
     const state = getState() as StoreApp; 
     console.log(state.user.ordersID)
     try {
-      const response = await fetch(`http://localhost:3000/api/myOrders/${payload.username}`, {
+      const response = await fetch(`${API_URL}/myOrders/${payload.username}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -113,7 +115,7 @@ export const updateMyOrders = createAsyncThunk(
 export const updateProductsID = createAsyncThunk(
   'user/updateProductsID',
   async (payload: { username: string; productsID: Array<number> }) => {
-    const response = await fetch(`http://localhost:3000/api/cart/${payload.username}`, {
+    const response = await fetch(`${API_URL}/cart/${payload.username}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -135,7 +137,7 @@ export const updateProductsID = createAsyncThunk(
 export const logoutFetch = createAsyncThunk(
   'user/logout',
   async (_, { dispatch }) => {
-    const response = await fetch(`http://localhost:3000/api/logout`, {
+    const response = await fetch(`${API_URL}/logout`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include"
@@ -154,7 +156,7 @@ export const getCart = createAsyncThunk(
   'user/getCart',
   async (username: string, { dispatch }) => {
     dispatch(changeLoading(true));
-    const response = await fetch(`http://localhost:3000/api/cart/${username}`, {
+    const response = await fetch(`${API_URL}/cart/${username}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include"

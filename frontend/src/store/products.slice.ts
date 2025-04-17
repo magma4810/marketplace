@@ -5,6 +5,8 @@ const initialState: ProductsState = {
     loading: true,
   };
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const productsSlice = createSlice({
     name: "products",
     initialState,
@@ -22,7 +24,7 @@ export const productsSlice = createSlice({
     'user/getProducts',
     async (_, { dispatch }) => {
       dispatch(changeLoading(true));
-      const response = await fetch(`http://localhost:3000/api/products/`, {
+      const response = await fetch(`${API_URL}/products/`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include"
