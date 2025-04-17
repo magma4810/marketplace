@@ -1,8 +1,8 @@
-name: Deploy Frontend to Vercel
+name: Deploy to Vercel
 
 on:
   push:
-    branches: [ develop ]
+    branches: [main, master]
     paths:
       - 'frontend/**'
 
@@ -10,22 +10,39 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     defaults:
-        run:
-          working-directory: frontend 
+      run:
+        working-directory: frontend
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Link Project
+        run: |
+          vercel link --yes --token=${{ secrets.VERCEL_TOKEN }} \
+          --project=${{ secrets.VERCEL_PROJECT_ID }} \
+          --scope=${{ secrets.VERCEL_ORG_ID }}
+
+      - name: Pull Environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Install and Build
         run: |
           npm install
           npm run build
 
-      - name: Deploy to production
+      - name: Deploy
         run: |
-            npx vercel deploy --prod -y --token=${{ secrets.VERCEL_TOKEN }} \
-            --scope=${{ secrets.VERCEL_ORG_ID }} \
-            --confirm
+          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} \
+          --scope=${{ secrets.VERCEL_ORG_ID }} \
+          --confirm
         env:
-            VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
