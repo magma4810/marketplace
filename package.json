@@ -19,7 +19,7 @@
   },
   "lint-staged": {
     "frontend/**/*.{ts,tsx}": [
-      "eslint --fix --max-warnings=1"
+      "eslint --fix"
     ]
   }
 }
