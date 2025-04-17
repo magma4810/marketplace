@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CardProducts component > matches snapshot 1`] = `
+<div>
+  <div
+    class="bg-white w-[25vw] h-[30vw] rounded-4xl m-2.5  p-3.5"
+  >
+    <div
+      class=" flex flex-col justify-between items-center h-4/5"
+    >
+      <div
+        class="w-45 h-45 flex items-center justify-center rounded-lg"
+      >
+        <img
+          alt="protein"
+          class="max-w-full max-h-full object-contain"
+          src="protein.png"
+        />
+      </div>
+      <span
+        class="font-medium"
+      >
+        protein
+      </span>
+      <div
+        class="w-full px-4 text-center"
+      >
+        good
+      </div>
+      <div
+        class="flex justify-evenly w-full"
+      >
+        <span>
+          Цена: 
+          3099
+          ₽
+        </span>
+        <span>
+          В наличии: 
+          3
+        </span>
+      </div>
+    </div>
+    <div
+      class=" h-1/5 flex justify-center items-center"
+    >
+      <button
+        data-testid="add-to-cart"
+      >
+        Mock AddToCart
+      </button>
+    </div>
+  </div>
+</div>
+`;

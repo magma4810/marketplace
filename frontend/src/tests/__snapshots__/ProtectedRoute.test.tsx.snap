@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProtectedRoute component > matches snapshot when authenticated 1`] = `
+<div>
+  <div
+    data-testid="outlet"
+  >
+    Protected Content
+  </div>
+</div>
+`;
+
+exports[`ProtectedRoute component > matches snapshot when loading 1`] = `
+<div>
+  <div
+    class="flex items-center justify-center h-[100vh] w-[100vw] text-sky-500 opacity-50 text-8xl"
+  >
+    Loading...
+  </div>
+</div>
+`;

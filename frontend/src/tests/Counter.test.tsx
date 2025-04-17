@@ -1,37 +1,40 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { addProductsID, deleteProductsID, userReducer } from '../store/user.slice';
-import { MemoryRouter } from 'react-router-dom';
-import { productsReducer } from '@/store/products.slice';
-import { Products } from '../../types';
-import { Counter } from '@/components/Counter';
-import { vi } from 'vitest';
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import {
+  addProductsID,
+  deleteProductsID,
+  userReducer,
+} from "../store/user.slice";
+import { MemoryRouter } from "react-router-dom";
+import { productsReducer } from "@/store/products.slice";
+import { Products } from "../../types";
+import { Counter } from "@/components/Counter";
+import { vi } from "vitest";
 
-// Мокаем useAppDispatch из ../store через vi.mock и возвращаем мок-диспетчер
 const mockDispatch = vi.fn();
 
-vi.mock('../store', async () => {
-  const actual = (await vi.importActual('../store')) as object;
+vi.mock("../store", async () => {
+  const actual = (await vi.importActual("../store")) as object;
   return {
     ...actual,
     useAppDispatch: () => mockDispatch,
   };
 });
 
-describe('Counter component', () => {
+describe("Counter component", () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   const product: Products = {
     id: 1,
-    title: 'protein',
-    description: 'good',
+    title: "protein",
+    description: "good",
     count: 3,
-    photo: 'protein.png',
+    photo: "protein.png",
     price: 3099,
-    vendorInfo: 'supabase',
+    vendorInfo: "supabase",
   };
 
   const createMockStore = (isAuthenticated: boolean, productsID: number[]) =>
@@ -42,13 +45,13 @@ describe('Counter component', () => {
       },
       preloadedState: {
         user: {
-          username: '',
-          password: '',
+          username: "",
+          password: "",
           productsID,
           ordersID: [],
           loading: false,
           isAuthenticated,
-          address: '',
+          address: "",
         },
         products: {
           products: [product],
@@ -57,7 +60,7 @@ describe('Counter component', () => {
       },
     });
 
-  it('renders with authentication', () => {
+  it("renders with authentication", () => {
     // Создаем стор с мок-диспетчером
     const mockStore = {
       ...createMockStore(true, [1]),
@@ -69,11 +72,11 @@ describe('Counter component', () => {
         <MemoryRouter>
           <Counter id={1} />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
-    const decrement = screen.getByText('-');
-    const increment = screen.getByText('+');
+    const decrement = screen.getByText("-");
+    const increment = screen.getByText("+");
 
     fireEvent.click(increment);
     fireEvent.click(decrement);

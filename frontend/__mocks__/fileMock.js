@@ -1,1 +1,1 @@
-import "test-file-stub"
+import "test-file-stub";

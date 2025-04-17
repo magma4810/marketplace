@@ -1,38 +1,35 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { userReducer } from '../store/user.slice';
-import { logoutFetch as mockLogoutFetch } from '../store/user.slice';
-import { MemoryRouter } from 'react-router-dom';
-import { Header } from '../components/Header';
-import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { fireEvent, render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import { userReducer } from "../store/user.slice";
+import { logoutFetch as mockLogoutFetch } from "../store/user.slice";
+import { MemoryRouter } from "react-router-dom";
+import { Header } from "../components/Header";
+import { vi, describe, it, expect, afterEach } from "vitest";
 
-// Mock assets
-vi.mock('../assets/muscle.png', () => ({ default: 'test-muscle-stub' }));
-vi.mock('../assets/my_orders.png', () => ({ default: 'test-orders-stub' }));
-vi.mock('../assets/cart.png', () => ({ default: 'test-cart-stub' }));
-vi.mock('../assets/logout.png', () => ({ default: 'test-logout-stub' }));
+vi.mock("../assets/muscle.png", () => ({ default: "test-muscle-stub" }));
+vi.mock("../assets/my_orders.png", () => ({ default: "test-orders-stub" }));
+vi.mock("../assets/cart.png", () => ({ default: "test-cart-stub" }));
+vi.mock("../assets/logout.png", () => ({ default: "test-logout-stub" }));
 
-// Mock react-router-dom
 const mockNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual("react-router-dom");
   return {
     ...actual,
     useNavigate: () => mockNavigate,
   };
 });
 
-// Mock user.slice
-vi.mock('../store/user.slice', async () => {
-  const actual = await vi.importActual('../store/user.slice');
+vi.mock("../store/user.slice", async () => {
+  const actual = await vi.importActual("../store/user.slice");
   return {
     ...actual,
-    logoutFetch: vi.fn(() => ({ type: 'user/logoutFetch' })),
+    logoutFetch: vi.fn(() => ({ type: "user/logoutFetch" })),
   };
 });
 
-describe('Header component', () => {
+describe("Header component", () => {
   const mockDispatch = vi.fn();
 
   afterEach(() => {
@@ -46,32 +43,32 @@ describe('Header component', () => {
       },
       preloadedState: {
         user: {
-          username: '',
-          password: '',
+          username: "",
+          password: "",
           productsID: [],
           ordersID: [],
           loading: false,
           isAuthenticated,
-          address: '',
+          address: "",
         },
       },
     });
 
-  it('renders without authentication', () => {
+  it("renders without authentication", () => {
     render(
       <Provider store={createMockStore(false)}>
         <MemoryRouter>
           <Header />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
-    expect(screen.getByText('SportFuelMarket')).toBeDefined();
-    const images = document.querySelectorAll('img');
+    expect(screen.getByText("SportFuelMarket")).toBeDefined();
+    const images = document.querySelectorAll("img");
     expect(images.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders with authentication', () => {
+  it("renders with authentication", () => {
     const mockStore = createMockStore(true);
     mockStore.dispatch = mockDispatch;
 
@@ -80,17 +77,17 @@ describe('Header component', () => {
         <MemoryRouter>
           <Header />
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
-    expect(screen.getByText('SportFuelMarket')).toBeDefined();
-    const images = document.querySelectorAll('img');
+    expect(screen.getByText("SportFuelMarket")).toBeDefined();
+    const images = document.querySelectorAll("img");
     expect(images.length).toBeGreaterThanOrEqual(4);
 
-    const logout = screen.getByTestId('logout');
+    const logout = screen.getByTestId("logout");
     fireEvent.click(logout);
 
     expect(mockLogoutFetch).toHaveBeenCalled();
-    expect(mockNavigate).toHaveBeenCalledWith('/signin');
+    expect(mockNavigate).toHaveBeenCalledWith("/signin");
   });
 });

@@ -1,68 +1,61 @@
-
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Code coverage report for EmptyCart.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type='text/css'>
-        .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
-        }
+    <style type="text/css">
+      .coverage-summary .sorter {
+        background-image: url(sort-arrow-sprite.png);
+      }
     </style>
-</head>
-    
-<body>
-<div class='wrapper'>
-    <div class='pad1'>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="pad1">
         <h1><a href="index.html">All files</a> EmptyCart.tsx</h1>
-        <div class='clearfix'>
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>3/3</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>3/3</span>
-            </div>
-        
-            
+        <div class="clearfix">
+          <div class="fl pad1y space-right2">
+            <span class="strong">100% </span>
+            <span class="quiet">Statements</span>
+            <span class="fraction">3/3</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">100% </span>
+            <span class="quiet">Branches</span>
+            <span class="fraction">0/0</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">100% </span>
+            <span class="quiet">Functions</span>
+            <span class="fraction">2/2</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">100% </span>
+            <span class="quiet">Lines</span>
+            <span class="fraction">3/3</span>
+          </div>
         </div>
         <p class="quiet">
-            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+          Press <em>n</em> or <em>j</em> to go to the next uncovered block,
+          <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
         <template id="filterTemplate">
-            <div class="quiet">
-                Filter:
-                <input type="search" id="fileSearch">
-            </div>
+          <div class="quiet">
+            Filter:
+            <input type="search" id="fileSearch" />
+          </div>
         </template>
-    </div>
-    <div class='status-line high'></div>
-    <pre><table class="coverage">
+      </div>
+      <div class="status-line high"></div>
+      <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -127,10 +120,15 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,87 +189,97 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FC } from "react";
 &nbsp;
 export const EmptyCart: FC = () =&gt; {
-    return (
-        &lt;div className="flex flex-col items-center justify-center h-[70vh] w-full"&gt;
-          &lt;div className="relative w-64 h-64 mb-8"&gt;
-            &lt;div className="absolute inset-0 flex items-center justify-center"&gt;
-              &lt;svg
-                className="w-48 h-48 text-gray-300 animate-bounce"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              &gt;
-                &lt;path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                /&gt;
-              &lt;/svg&gt;
-            &lt;/div&gt;
-            &lt;div className="absolute inset-0 flex items-center justify-center"&gt;
-              &lt;div className="w-40 h-40 bg-white rounded-full opacity-30"&gt;&lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-  
-          &lt;h2 className="text-3xl font-bold text-gray-700 mb-4" data-testid="empty"&gt;Ваша корзина пуста&lt;/h2&gt;
-          &lt;p className="text-lg text-gray-500 mb-8 text-center max-w-md"&gt;
-            Начните покупки, чтобы заполнить её товарами!
-          &lt;/p&gt;
-  
-          &lt;a
-            href="/"
-            className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+  return (
+    &lt;div className="flex flex-col items-center justify-center h-[70vh] w-full"&gt;
+      &lt;div className="relative w-64 h-64 mb-8"&gt;
+        &lt;div className="absolute inset-0 flex items-center justify-center"&gt;
+          &lt;svg
+            className="w-48 h-48 text-gray-300 animate-bounce"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           &gt;
-            Перейти к покупкам
-          &lt;/a&gt;
-  
-          &lt;div className="mt-12 flex space-x-4 opacity-50"&gt;
-            {[1, 2, 3].map((item) =&gt; (
-              &lt;div
-                key={item}
-                className="w-16 h-16 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center"
-              &gt;
-                &lt;svg
-                  className="w-8 h-8 text-gray-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                &gt;
-                  &lt;path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1}
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  /&gt;
-                &lt;/svg&gt;
-              &lt;/div&gt;
-            ))}
-          &lt;/div&gt;
+            &lt;path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1}
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            /&gt;
+          &lt;/svg&gt;
         &lt;/div&gt;
-      );
-}</pre></td></tr></table></pre>
+        &lt;div className="absolute inset-0 flex items-center justify-center"&gt;
+          &lt;div className="w-40 h-40 bg-white rounded-full opacity-30"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+&nbsp;
+      &lt;h2 className="text-3xl font-bold text-gray-700 mb-4" data-testid="empty"&gt;
+        Ваша корзина пуста
+      &lt;/h2&gt;
+      &lt;p className="text-lg text-gray-500 mb-8 text-center max-w-md"&gt;
+        Начните покупки, чтобы заполнить её товарами!
+      &lt;/p&gt;
+&nbsp;
+      &lt;a
+        href="/"
+        className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+      &gt;
+        Перейти к покупкам
+      &lt;/a&gt;
+&nbsp;
+      &lt;div className="mt-12 flex space-x-4 opacity-50"&gt;
+        {[1, 2, 3].map((item) =&gt; (
+          &lt;div
+            key={item}
+            className="w-16 h-16 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center"
+          &gt;
+            &lt;svg
+              className="w-8 h-8 text-gray-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            &gt;
+              &lt;path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+&nbsp;</pre></td></tr></table></pre>
 
-                <div class='push'></div><!-- for sticky footer -->
-            </div><!-- /wrapper -->
-            <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-17T09:44:55.858Z
-            </div>
-        <script src="prettify.js"></script>
-        <script>
-            window.onload = function () {
-                prettyPrint();
-            };
-        </script>
-        <script src="sorter.js"></script>
-        <script src="block-navigation.js"></script>
-    </body>
+      <div class="push"></div>
+      <!-- for sticky footer -->
+    </div>
+    <!-- /wrapper -->
+    <div class="footer quiet pad2 space-top1 center small">
+      Code coverage generated by
+      <a
+        href="https://istanbul.js.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >istanbul</a
+      >
+      at 2025-04-17T13:02:48.628Z
+    </div>
+    <script src="prettify.js"></script>
+    <script>
+      window.onload = function () {
+        prettyPrint();
+      };
+    </script>
+    <script src="sorter.js"></script>
+    <script src="block-navigation.js"></script>
+  </body>
 </html>
-    
