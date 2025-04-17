@@ -16,7 +16,7 @@ export const Header: FC = () => {
         <div className="flex bg-gradient-to-r from-indigo-200 to-purple-200 w-[100vw] h-[12vh] items-center justify-around">
             <div className="flex items-center justify-center">
                 <Icon href="/" src={muscle}/>
-                <a href="/"><span className="text-3xl">SportFuelMarket</span></a>
+                <a href="/"><span className="text-3xl">123SportFuefddsslMarket</span></a>
             </div>
             {isAuthenticated && 
                 <div className="flex justify-between w-[20%]">
