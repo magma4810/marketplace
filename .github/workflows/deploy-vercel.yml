@@ -2,7 +2,7 @@ name: Deploy to Vercel
 
 on:
   push:
-    branches: develop
+    branches: [main, develop]
     paths:
       - 'frontend/**'
 
@@ -14,36 +14,23 @@ jobs:
         working-directory: frontend
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install Vercel CLI
+      - name: Install latest Vercel CLI
         run: npm install -g vercel@latest
 
-      - name: Link Project
+      - name: Link to Vercel project
         run: |
-          vercel link --yes --token=${{ secrets.VERCEL_TOKEN }} \
+          npx vercel link --yes \
+          --token=${{ secrets.VERCEL_TOKEN }} \
           --project=${{ secrets.VERCEL_PROJECT_ID }} \
           --scope=${{ secrets.VERCEL_ORG_ID }}
 
-      - name: Pull Environment
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Install and Build
+      - name: Deploy to production
         run: |
-          npm install
-          npm run build
-
-      - name: Deploy
-        run: |
-          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} \
-          --scope=${{ secrets.VERCEL_ORG_ID }} \
-          --confirm
+          npx vercel deploy --prod \
+          --token=${{ secrets.VERCEL_TOKEN }} \
+          --scope=${{ secrets.VERCEL_ORG_ID }}
         env:
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }},
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
