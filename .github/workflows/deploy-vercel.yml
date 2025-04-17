@@ -9,18 +9,23 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          working-directory: frontend 
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install and Build
-        working-directory: frontend
         run: |
           npm install
           npm run build
-
-      - name: Deploy to Vercel
-        working-directory: frontend
+      - name: Pull Vercel project settings
         run: |
-          npx vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+          vercel link --project ${{ secrets.VERCEL_PROJECT_ID }} --token ${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy to Vercel
+        run: |
+          npx vercel --prod -y --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
