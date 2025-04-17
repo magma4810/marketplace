@@ -14,6 +14,7 @@ export const AddToCart: FC<{ data: Products }> = ({ data }) => {
   const count = productsID.filter((itemID) => itemID === data.id).length;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  
   return (
     <>
       {isAuthenticated && count > 0 ? (
