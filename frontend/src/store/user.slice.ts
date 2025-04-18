@@ -88,7 +88,6 @@ export const updateMyOrders = createAsyncThunk(
   "user/updateMyOrders",
   async (payload: { username: string }, { getState }) => {
     const state = getState() as StoreApp;
-    console.log(state.user.ordersID);
     try {
       const response = await fetch(`${API_URL}/myOrders/${payload.username}`, {
         method: "POST",

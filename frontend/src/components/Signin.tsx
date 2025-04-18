@@ -18,14 +18,14 @@ export const Signin: FC = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
       const userInfo = await fetch(
-        `http://localhost:3000/api/getUserInfoByName/${username}`,
+        `${API_URL}/getUserInfoByName/${username}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ export const Signin: FC = () => {
       if (data.password !== password) {
         throw new Error("Неверный пароль или логин");
       }
-      const response = await fetch("http://localhost:3000/api/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
