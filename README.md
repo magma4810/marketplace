@@ -4,7 +4,9 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0.14-blueviolet?logo=tailwind-css)
 # 🛍️ [Маркетплейс (Интернет-магазин)](https://marketplace-frontend-vannesals-projects.vercel.app/)
 
-Современный маркетплейс, построенный на передовых технологиях.
+## Описание
+
+Современный маркетплейс спортивного питания, построенный на передовых технологиях.
 
 ## ✨ Возможности
 
