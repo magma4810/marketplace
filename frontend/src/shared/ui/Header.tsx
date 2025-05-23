@@ -1,56 +1,82 @@
 import { FC } from "react";
-import { IconProps } from "../../../types";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { StoreApp, useAppDispatch } from "@/app/providers/store";
+import { logoutFetch } from "@/app/providers/store/user.slice";
+
 import muscle from "../../assets/muscle.png";
 import my_orders from "../../assets/my_orders.png";
 import cart from "../../assets/cart.png";
 import logout from "../../assets/logout.png";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { StoreApp,useAppDispatch } from "@/app/providers/store";
-import { logoutFetch } from "@/app/providers/store/user.slice";
+
+const HeaderContainer = styled.header`
+  display: flex;
+  background: linear-gradient(to right, #c7d2fe, #ddd6fe);
+  width: 100vw;
+  height: 12vh;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+const IconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 30%;
+`
+
+const IconImage = styled.img`
+  width: 3vw;
+  height: auto;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
 
 export const Header: FC = () => {
   const isAuthenticated = useSelector(
     (store: StoreApp) => store.user.isAuthenticated,
   );
+
   return (
-    <div className="flex bg-gradient-to-r from-indigo-200 to-purple-200 w-[100vw] h-[12vh] items-center justify-around">
-      <div className="flex items-center justify-center">
-        <Icon href="/" src={muscle} />
+    <HeaderContainer>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <a href="/">
-          <span className="text-3xl">SportFuelMarket</span>
+          <IconImage src={muscle} alt="Logo" />
         </a>
+        <span style={{ fontSize: '1.5rem' }}>SportFuelMarket</span>
       </div>
+
       {isAuthenticated && (
-        <div className="flex justify-between w-[20%]">
-          <Icon href="/my-orders" src={my_orders} />
-          <Icon href="/cart" src={cart} />
-          <Icon href="/signin" src={logout} data_testid="logout" />
-        </div>
+        <IconsContainer>
+          <a href="/my-orders">
+            <IconImage src={my_orders} alt="My Orders" />
+          </a>
+          <a href="/cart">
+            <IconImage src={cart} alt="Cart" />
+          </a>
+          <LogoutButton />
+        </IconsContainer>
       )}
-    </div>
+    </HeaderContainer>
   );
 };
 
-const Icon: FC<IconProps> = ({ href, src, data_testid }) => {
+const LogoutButton = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const onClick = (e: React.MouseEvent) => {
-    if (href === "/signin") {
-      e.preventDefault();
-      dispatch(logoutFetch());
-      navigate("/signin");
-    }
-  };
 
   return (
-    <a
-      href={href}
-      onClick={(e) => onClick(e)}
-      className="block w-[3vw] h-auto"
-      data-testid={data_testid}
-    >
-      <img src={src} alt="" />
-    </a>
+    <IconImage 
+      src={logout} 
+      alt="Logout"
+      onClick={() => {
+        dispatch(logoutFetch());
+        navigate("/signin");
+      }}
+      data-testid="logout"
+    />
   );
 };
