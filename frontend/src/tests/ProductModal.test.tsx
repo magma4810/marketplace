@@ -1,7 +1,7 @@
-import { ProductModal } from "@/components/ProductModal";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Products } from "../../types";
 import { vi, describe, it, expect } from "vitest";
+import { ProductModal } from "@/pages/ProductModalPage/ProductModal";
 
 vi.mock("@/components/AddToCart", () => ({
   AddToCart: () => <div>Mock AddToCart</div>,

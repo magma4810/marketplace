@@ -1,4 +1,4 @@
-import { SortBy } from "@/components/SortBy";
+import { SortBy } from "@/features/products/ui/SortBy";
 import { render, screen } from "@testing-library/react";
 
 describe("SortBy component", () => {

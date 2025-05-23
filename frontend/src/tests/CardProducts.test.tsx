@@ -3,9 +3,9 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach } from "vitest";
-import { CardProducts } from "@/components/CardProducts";
-import { userReducer } from "@/store/user.slice";
+import { CardProducts } from "@/features/products/ui/CardProducts";
 import { Products } from "../../types";
+import { userReducer } from "@/app/providers/store/user.slice";
 
 vi.mock("@/components/ProductModal", () => ({
   ProductModal: vi.fn(({ isOpen }) =>

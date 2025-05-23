@@ -4,10 +4,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import { MemoryRouter } from "react-router-dom";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { AddToCart } from "../components/AddToCart";
+import { AddToCart } from "../features/cart/ui/AddToCart";
 import { Products } from "../../types";
-import { addProductsID, userReducer } from "../store/user.slice";
-import { productsReducer } from "@/store/products.slice";
+import { addProductsID, userReducer } from "@/app/providers/store/user.slice";
+import { productsReducer } from "@/features/products/model/products.slice";
 
 const mockNavigate = vi.fn();
 vi.mock("react-router-dom", async (importOriginal) => {
@@ -20,7 +20,7 @@ vi.mock("react-router-dom", async (importOriginal) => {
 
 const mockDispatch = vi.fn();
 vi.mock("../store", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../store")>();
+  const actual = await importOriginal<typeof import("../app/providers/store")>();
   return {
     ...actual,
     useAppDispatch: () => mockDispatch,

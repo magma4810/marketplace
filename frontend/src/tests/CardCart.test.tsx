@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { productsReducer } from "@/store/products.slice";
-import { userReducer } from "@/store/user.slice";
 import { configureStore } from "@reduxjs/toolkit";
 import { Products } from "../../types";
 import { screen } from "@testing-library/dom";
 import { render } from "@testing-library/react";
-import { CardCart } from "@/components/CardCart";
+import { CardCart } from "@/features/cart/ui/CardCart";
 import { Provider } from "react-redux";
+import { userReducer } from "@/app/providers/store/user.slice";
+import { productsReducer } from "@/features/products/model/products.slice";
 
 describe("Card component", () => {
   const product: Products = {

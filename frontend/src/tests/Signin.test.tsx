@@ -1,10 +1,10 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach } from "vitest";
-import { Signin } from "@/components/Signin";
+import { Signin } from "@/pages/SignInPage/Signin";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { useAppDispatch } from "@/store";
+import { useAppDispatch } from "../app/providers/store";
 import { MemoryRouter, useNavigate } from "react-router-dom";
 
 vi.mock("react-router-dom", async (importOriginal) => {
@@ -16,7 +16,7 @@ vi.mock("react-router-dom", async (importOriginal) => {
 });
 
 vi.mock("@/store", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@/store")>();
+  const actual = await importOriginal<typeof import("../app/providers/store")>();
   return {
     ...actual,
     useAppDispatch: vi.fn(),

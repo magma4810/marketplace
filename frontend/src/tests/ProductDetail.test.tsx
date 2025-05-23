@@ -3,11 +3,11 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { ProductDetail } from "@/components/ProductDetail";
-import { productsReducer } from "@/store/products.slice";
+import { ProductDetail } from "@/pages/ProductDetailPage/ProductDetail";
 import { useParams, useNavigate } from "react-router-dom";
-import { ProductModal } from "@/components/ProductModal";
 import { Products } from "../../types";
+import { productsReducer } from "@/features/products/model/products.slice";
+import { ProductModal } from "@/pages/ProductModalPage/ProductModal";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");

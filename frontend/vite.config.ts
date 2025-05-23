@@ -7,13 +7,13 @@ import * as path from "path";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   test: {
-    globals: true, // Чтобы не импортировать describe, it, expect и т.д.
-    environment: "jsdom", // или 'happy-dom' для тестов с DOM
+    globals: true, 
+    environment: "jsdom", 
     coverage: {
-      provider: "v8", // или 'istanbul'
+      provider: "v8", 
       reporter: ["text", "json", "html"],
     },
-    setupFiles: "./src/setupTests.ts", // Файл с настройками
+    setupFiles: "./src/setupTests.ts",
   },
   resolve: {
     alias: {

@@ -3,11 +3,11 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { MyOrders } from "@/components/MyOrders";
-import { userReducer } from "../store/user.slice";
-import { productsReducer } from "../store/products.slice";
-import { ordersReducer } from "../store/orders.slice";
+import { MyOrders } from "@/pages/MyOrdersPage/MyOrders";
+import { userReducer } from "../app/providers/store/user.slice";
 import { Orders, Products } from "../../types";
+import { ordersReducer } from "@/features/orders/model/orders.slice";
+import { productsReducer } from "@/features/products/model/products.slice";
 
 vi.mock("@/components/Header", () => ({
   Header: () => <div>Mock Header</div>,

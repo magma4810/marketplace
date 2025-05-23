@@ -3,10 +3,10 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { userReducer } from "@/store/user.slice";
+import { ProtectedRoute } from "@/features/auth/ui/ProtectedRoute";
+import { userReducer } from "../app/providers/store/user.slice";
 import { MemoryRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useAuthCheck } from "@/components/hooks/useAuthCheck";
+import { useAuthCheck } from "@/processes/auth/useAuthCheck";
 
 vi.mock("@/components/hooks/useAuthCheck", () => ({
   useAuthCheck: vi.fn(),

@@ -3,9 +3,9 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { vi } from "vitest";
 import { describe, it, expect } from "vitest";
-import { CardOrder } from "@/components/CardOrder";
-import { productsReducer } from "@/store/products.slice";
+import { CardOrder } from "@/features/cart/ui/CardOrder";
 import { CardOrderProps, Products } from "../../types";
+import { productsReducer } from "@/features/products/model/products.slice";
 
 vi.mock("@/assets/muscle.png", () => "test-muscle-image");
 

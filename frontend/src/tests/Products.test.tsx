@@ -3,10 +3,10 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach } from "vitest";
-import { Products } from "@/components/Products";
-import { productsReducer } from "@/store/products.slice";
-import { userReducer } from "@/store/user.slice";
+import { userReducer } from "../app/providers/store/user.slice";
 import { Product } from "../../types";
+import { productsReducer } from "@/features/products/model/products.slice";
+import { Products } from "@/pages/ProductsPage/Products";
 
 vi.mock("@/components/Header", () => ({
   Header: () => <div>Mock Header</div>,
@@ -34,7 +34,7 @@ vi.mock("framer-motion", () => ({
 }));
 
 vi.mock("../store", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../store")>();
+  const actual = await importOriginal<typeof import("../app/providers/store")>();
   return {
     ...actual,
     useAppDispatch: () => vi.fn(),
@@ -214,7 +214,7 @@ describe("Products component", () => {
 
   it("dispatches getCart when authenticated", async () => {
     vi.mock("../store", async (importOriginal) => {
-      const actual = await importOriginal<typeof import("../store")>();
+      const actual = await importOriginal<typeof import("../app/providers/store")>();
       return {
         ...actual,
         useAppDispatch: () => mockDispatch,

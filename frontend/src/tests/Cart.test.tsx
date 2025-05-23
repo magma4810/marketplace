@@ -3,20 +3,20 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { MemoryRouter } from "react-router-dom";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { updateProductsID, userReducer } from "../store/user.slice";
-import { ordersReducer } from "../store/orders.slice";
-import { productsReducer } from "@/store/products.slice";
 import { Products } from "../../types";
-import { Cart } from "@/components/Cart";
-import { createOrder } from "../store/orders.slice";
-import * as store from "../store";
+import { Cart } from "@/pages/CartPage/Cart";
+import * as store from "../app/providers/store";
+import { updateProductsID, userReducer } from "../app/providers/store/user.slice";
+import { productsReducer } from "@/features/products/model/products.slice";
+import { ordersReducer } from "../features/orders/model/orders.slice";
+import { createOrder } from "@/features/orders/api/orders";
 
 vi.mock("@/components/Header", () => ({
   Header: () => <div>Mock Header</div>,
 }));
 
 vi.mock("../store", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../store")>();
+  const actual = await importOriginal<typeof import("../app/providers/store")>();
   return {
     ...actual,
     useAppDispatch: () => vi.fn(),
@@ -24,7 +24,7 @@ vi.mock("../store", async (importOriginal) => {
 });
 
 vi.mock("@/store/user.slice", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@/store/user.slice")>();
+  const actual = await importOriginal<typeof import("../app/providers/store/user.slice")>();
   return {
     ...actual,
     updateProductsID: vi.fn((payload) => ({
@@ -35,7 +35,7 @@ vi.mock("@/store/user.slice", async (importOriginal) => {
 });
 
 vi.mock("@/store/orders.slice", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@/store/orders.slice")>();
+  const actual = await importOriginal<typeof import("../features/orders/model/orders.slice")>();
   return {
     ...actual,
     createOrder: vi.fn((payload) => ({

@@ -1,10 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "../store/user.slice";
-import { logoutFetch as mockLogoutFetch } from "../store/user.slice";
+import { userReducer } from "../app/providers/store/user.slice";
+import { logoutFetch as mockLogoutFetch } from "../app/providers/store/user.slice";
 import { MemoryRouter } from "react-router-dom";
-import { Header } from "../components/Header";
+import { Header } from "../shared/ui/Header";
 import { vi, describe, it, expect, afterEach } from "vitest";
 
 vi.mock("../assets/muscle.png", () => ({ default: "test-muscle-stub" }));
