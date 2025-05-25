@@ -11,7 +11,7 @@ export const ProtectedRoute = () => {
   const location = useLocation();
   if (!isAuthChecked) {
     return (
-      <div className="flex items-center justify-center h-[100vh] w-[100vw] text-sky-500 opacity-50 text-8xl">
+      <div className="flex items-center justify-center h-[100vh] w-[100vw] text-indigo-500 opacity-50 text-8xl">
         Loading...
       </div>
     );
