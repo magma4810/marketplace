@@ -35,6 +35,7 @@ const IconImage = styled.img`
   }
 `;
 
+
 export const Header: FC = () => {
   const isAuthenticated = useSelector(
     (store: StoreApp) => store.user.isAuthenticated,

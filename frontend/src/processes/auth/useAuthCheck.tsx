@@ -5,12 +5,12 @@ import { useDispatch } from "react-redux";
 export const useAuthCheck = (): boolean => {
   const dispatch = useDispatch();
   const [isAuthChecked, setIsAuthChecked] = useState(false);
-
+  const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const checkAuth = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/checkAuthUser`,
+          `${API_URL}/checkAuthUser`,
           {
             credentials: "include",
             headers: {
