@@ -2,6 +2,18 @@ import { useSelector } from "react-redux";
 import { useAuthCheck } from "../../../processes/auth/useAuthCheck";
 import { Navigate, useLocation, Outlet } from "react-router-dom";
 import { StoreApp } from "@/app/providers/store";
+import styled from "styled-components";
+
+const ProtectedRouteStyle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  color: rgb(99 102 241);
+  opacity: 0.5;
+  font-size: 6rem;
+`
 
 export const ProtectedRoute = () => {
   const isAuthChecked = useAuthCheck();
@@ -11,9 +23,9 @@ export const ProtectedRoute = () => {
   const location = useLocation();
   if (!isAuthChecked) {
     return (
-      <div className="flex items-center justify-center h-[100vh] w-[100vw] text-indigo-500 opacity-50 text-8xl">
+      <ProtectedRouteStyle>
         Loading...
-      </div>
+      </ProtectedRouteStyle>
     );
   }
 
