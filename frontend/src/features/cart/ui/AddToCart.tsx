@@ -3,7 +3,7 @@ import { Counter } from "./Counter";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Products } from "../../../../types";
-import { addProductsID } from "@/app/providers/store/user.slice";
+import { addProductsID } from "@/features/user/model/user.slice";
 import { StoreApp,useAppDispatch } from "@/app/providers/store";
 import styled from "styled-components";
 

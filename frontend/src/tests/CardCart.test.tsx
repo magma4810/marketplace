@@ -5,7 +5,7 @@ import { screen } from "@testing-library/dom";
 import { render } from "@testing-library/react";
 import { CardCart } from "@/features/cart/ui/CardCart";
 import { Provider } from "react-redux";
-import { userReducer } from "@/app/providers/store/user.slice";
+import { userReducer } from "@/features/user/model/user.slice";
 import { productsReducer } from "@/features/products/model/products.slice";
 
 describe("Card component", () => {

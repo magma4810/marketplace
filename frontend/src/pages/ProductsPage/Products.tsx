@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import { StoreApp,useAppDispatch } from "@/app/providers/store";
 import { getProducts } from "@/features/products/api/products";
-import { getCart, updateProductsID } from "@/app/providers/store/user.slice";
+import { getCart, updateProductsID } from "@/features/user/api/user";
 import { Header } from "@/shared/ui/Header";
 import { Loading } from "@/shared/ui/Loading";
 import { SortBy } from "@/features/products/ui/SortBy";

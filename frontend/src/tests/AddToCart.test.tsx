@@ -6,7 +6,7 @@ import { vi } from "vitest";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { AddToCart } from "../features/cart/ui/AddToCart";
 import { Products } from "../../types";
-import { addProductsID, userReducer } from "@/app/providers/store/user.slice";
+import { addProductsID, userReducer } from "@/features/user/model/user.slice";
 import { productsReducer } from "@/features/products/model/products.slice";
 
 const mockNavigate = vi.fn();

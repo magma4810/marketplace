@@ -1,4 +1,4 @@
-import { logout } from "@/app/providers/store/user.slice";
+import { logout } from "@/features/user/model/user.slice";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 

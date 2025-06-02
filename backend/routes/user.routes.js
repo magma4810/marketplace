@@ -5,6 +5,7 @@ export const userRouter = new Router();
 
 userRouter.get('/products', userController.products);
 userRouter.get('/products/:id', userController.productsById);
+userRouter.put('/updateCountProduct/:id', userController.updateCountProduct);
 userRouter.get('/myOrders/:username', userController.getMyOrders);
 userRouter.post('/myOrders/:username', userController.updateMyOrders);
 userRouter.get('/getOrderByID/:id', userController.getOrderByID);

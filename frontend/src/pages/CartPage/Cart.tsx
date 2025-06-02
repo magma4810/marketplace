@@ -6,7 +6,7 @@ import { EmptyCart } from "../../features/cart/ui/EmptyCart";
 import { CardCart } from "../../features/cart/ui/CardCart";
 import { StoreApp,useAppDispatch } from "@/app/providers/store";
 import { getProducts } from "@/features/products/api/products";
-import { updateProductsID,getCart, getOrders } from "@/app/providers/store/user.slice";
+import { updateProductsID,getCart, getOrders } from "@/features/user/api/user";
 import { createOrder } from "@/features/orders/api/orders";
 
 export const Cart: FC = () => {

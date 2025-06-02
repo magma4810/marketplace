@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { productsReducer } from "../../../features/products/model/products.slice";
 import { ordersReducer } from "../../../features/orders/model/orders.slice";
-import { userReducer } from "./user.slice";
+import { userReducer } from "../../../features/user/model/user.slice";
 
 const rootReducer = combineReducers({
   products: productsReducer,

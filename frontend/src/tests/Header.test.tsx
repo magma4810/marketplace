@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "../app/providers/store/user.slice";
-import { logoutFetch as mockLogoutFetch } from "../app/providers/store/user.slice";
+import { userReducer } from "../features/user/model/user.slice";
+import { logoutFetch as mockLogoutFetch } from "../features/user/model/user.slice";
 import { MemoryRouter } from "react-router-dom";
 import { Header } from "../shared/ui/Header";
 import { vi, describe, it, expect, afterEach } from "vitest";

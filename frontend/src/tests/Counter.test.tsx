@@ -5,7 +5,7 @@ import {
   addProductsID,
   deleteProductsID,
   userReducer,
-} from "../app/providers/store/user.slice";
+} from "../features/user/model/user.slice";
 import { MemoryRouter } from "react-router-dom";
 import { Products } from "../../types";
 import { Counter } from "@/features/cart/ui/Counter";

@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { EmptyOrders } from "../../features/orders/ui/EmptyOrders";
 import { StoreApp,useAppDispatch } from "@/app/providers/store";
-import { getOrders } from "@/app/providers/store/user.slice";
+import { getOrders } from "@/features/user/api/user";
 import { Header } from "@/shared/ui/Header";
 import { Loading } from "@/shared/ui/Loading";
 import { SortBy } from "@/features/products/ui/SortBy";

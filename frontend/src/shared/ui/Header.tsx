@@ -3,12 +3,11 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { StoreApp, useAppDispatch } from "@/app/providers/store";
-import { logoutFetch } from "@/app/providers/store/user.slice";
-
 import muscle from "../../assets/muscle.png";
 import my_orders from "../../assets/my_orders.png";
 import cart from "../../assets/cart.png";
 import logout from "../../assets/logout.png";
+import { logoutFetch } from "@/features/user/api/user";
 
 const HeaderContainer = styled.header`
   display: flex;

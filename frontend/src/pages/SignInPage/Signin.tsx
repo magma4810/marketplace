@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "react-feather";
-import { changeUsername,changeIsAuthenticated } from "@/app/providers/store/user.slice";
+import { changeUsername,changeIsAuthenticated } from "@/features/user/model/user.slice";
 import { useAppDispatch } from "@/app/providers/store";
 
 export const Signin: FC = () => {

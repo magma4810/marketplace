@@ -2,6 +2,23 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { Counter } from "./Counter";
 import { StoreApp } from "@/app/providers/store";
+import styled from "styled-components";
+
+const ProductUndefined = styled.span`
+  color: #9a5858;
+`
+
+const CardContainer = styled.div`
+  display: flex;
+  background-color: white;
+  width: 70vw;
+  height: 25vh;
+  border-radius: 2rem;
+  margin: 0.625rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem;
+`
 
 export const CardCart: FC<{ id: number }> = ({ id }) => {
   const products = useSelector((store: StoreApp) => store.products.products);
@@ -12,7 +29,7 @@ export const CardCart: FC<{ id: number }> = ({ id }) => {
   return (
     <>
       {product ? (
-        <div className="bg-white w-[70vw] h-[15vw] rounded-4xl m-2.5 flex justify-between items-center p-3.5">
+        <CardContainer>
           <div className="w-1/5">
             <div className="w-40 h-40 flex items-center justify-center rounded-lg">
               <img
@@ -45,9 +62,9 @@ export const CardCart: FC<{ id: number }> = ({ id }) => {
               </span>
             </div>
           </div>
-        </div>
+        </CardContainer>
       ) : (
-        <span className="text-red-500">Товар не найден</span>
+        <ProductUndefined>Товар не найден</ProductUndefined>
       )}
     </>
   );

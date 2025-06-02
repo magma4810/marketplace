@@ -6,7 +6,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { Products } from "../../types";
 import { Cart } from "@/pages/CartPage/Cart";
 import * as store from "../app/providers/store";
-import { updateProductsID, userReducer } from "../app/providers/store/user.slice";
+import { updateProductsID, userReducer } from "../features/user/model/user.slice";
 import { productsReducer } from "@/features/products/model/products.slice";
 import { ordersReducer } from "../features/orders/model/orders.slice";
 import { createOrder } from "@/features/orders/api/orders";
@@ -24,7 +24,7 @@ vi.mock("../store", async (importOriginal) => {
 });
 
 vi.mock("@/store/user.slice", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../app/providers/store/user.slice")>();
+  const actual = await importOriginal<typeof import("../features/user/model/user.slice")>();
   return {
     ...actual,
     updateProductsID: vi.fn((payload) => ({

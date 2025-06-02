@@ -5,7 +5,7 @@ import { vi } from "vitest";
 import { describe, it, expect, beforeEach } from "vitest";
 import { CardProducts } from "@/features/products/ui/CardProducts";
 import { Products } from "../../types";
-import { userReducer } from "@/app/providers/store/user.slice";
+import { userReducer } from "@/features/user/model/user.slice";
 
 vi.mock("@/components/ProductModal", () => ({
   ProductModal: vi.fn(({ isOpen }) =>

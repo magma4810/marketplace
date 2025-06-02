@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addOrdersID, clearProductsID, updateMyOrders } from "../../../app/providers/store/user.slice";
+import { addOrdersID, clearProductsID } from "../../user/model/user.slice";
 import { addOrders, changeLoading } from "../model/orders.slice";
 import { OrderInfo } from "../../../../types";
+import { updateMyOrders } from "@/features/user/api/user";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

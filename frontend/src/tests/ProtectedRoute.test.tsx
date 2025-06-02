@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { vi } from "vitest";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { ProtectedRoute } from "@/features/auth/ui/ProtectedRoute";
-import { userReducer } from "../app/providers/store/user.slice";
+import { userReducer } from "../features/user/model/user.slice";
 import { MemoryRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useAuthCheck } from "@/processes/auth/useAuthCheck";
 

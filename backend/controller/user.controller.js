@@ -30,6 +30,24 @@ class UserController {
             res.status(500).json({ error: 'Ошибка при получении товарa' });
         }
     }
+    async updateCountProduct(req, res) {
+        const { id } = req.params;
+        const { count } = req.body;
+        try {
+            const [getData, metadata] = await sequelize.query(
+                `UPDATE "Products" 
+                SET "count" = :count
+                WHERE id = :id`,
+                {
+                    replacements: {count,id}
+                }
+            );
+            res.json(getData);
+        } catch (error) {
+            console.error('Ошибка при изменении кол ва товарa', error);
+            res.status(500).json({ error: 'Ошибка при изменении кол ва товарa' });
+        }
+    }
     async getMyOrders(req, res) {
         const { username } = req.params;
         try {

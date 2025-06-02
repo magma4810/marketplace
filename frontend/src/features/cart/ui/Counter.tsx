@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { StoreApp,useAppDispatch } from "@/app/providers/store";
-import { addProductsID,deleteProductsID } from "@/app/providers/store/user.slice";
+import { addProductsID,deleteProductsID } from "@/features/user/model/user.slice";
 
 export const Counter: FC<{ id: number }> = ({ ...props }) => {
   const dispatch = useAppDispatch();
