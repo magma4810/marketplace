@@ -50,7 +50,6 @@ export const createOrder = createAsyncThunk(
       if (!orderResponse.ok) {
         throw new Error("Не удалось создать заказ");
       }
-
       const orderData = await orderResponse.json();
       dispatch(addOrdersID(orderData[0].id));
       await dispatch(

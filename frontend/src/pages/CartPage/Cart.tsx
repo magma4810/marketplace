@@ -5,7 +5,7 @@ import { Loading } from "../../shared/ui/Loading";
 import { EmptyCart } from "../../features/cart/ui/EmptyCart";
 import { CardCart } from "../../features/cart/ui/CardCart";
 import { StoreApp,useAppDispatch } from "@/app/providers/store";
-import { getProducts } from "@/features/products/api/products";
+import { getProducts, updateCountProduct } from "@/features/products/api/products";
 import { updateProductsID,getCart, getOrders } from "@/features/user/api/user";
 import { createOrder } from "@/features/orders/api/orders";
 
@@ -43,6 +43,29 @@ export const Cart: FC = () => {
     cost: totalSum,
     username: username,
   };
+  const createOrderClick = () => {
+    if (productsID.length) {
+      dispatch(createOrder(orderInfo));
+      
+      const productQuantities: Record<number, number> = {};
+      
+      productsID.forEach((id: number) => {
+        productQuantities[id] = (productQuantities[id] || 0) + 1;
+      });
+      
+      Object.entries(productQuantities).forEach(([idStr, quantity]) => {
+        const id = Number(idStr);
+        const product = products.find(p => p.id === id);
+        
+        if (product) {
+          dispatch(updateCountProduct({
+            count: product.count - quantity,
+            id: id,
+          }));
+        }
+      });
+    }
+  };
 
   return (
     <>
@@ -68,9 +91,7 @@ export const Cart: FC = () => {
           </span>
           <button
             data-testid="createOrder"
-            onClick={() =>
-              productsID.length && dispatch(createOrder(orderInfo))
-            }
+            onClick={createOrderClick}
             className={`  w-[65%] h-[20%] rounded-4xl  text-2xl ${productsID.length ? "cursor-pointer bg-amber-100" : "cursor-not-allowed bg-gray-200"}`}
           >
             Создать Заказ
