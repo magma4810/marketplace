@@ -103,7 +103,7 @@ export const Products: FC = () => {
             <AnimatePresence>
               {sortedProducts.filter((product) =>
                 product.title.toLowerCase().includes(input.toLowerCase()),
-              ).length > 0 ? (
+              ).length > 0 && !loading ? (
                 sortedProducts.map(
                   (product) =>
                     product.title

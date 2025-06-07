@@ -12,6 +12,7 @@ export const Signup: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -44,7 +45,7 @@ export const Signup: FC = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/api/signup", {
+      const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

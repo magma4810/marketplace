@@ -39,7 +39,7 @@ export const Header: FC = () => {
   const isAuthenticated = useSelector(
     (store: StoreApp) => store.user.isAuthenticated,
   );
-
+  const role = useSelector((store: StoreApp) => store.user.role);
   return (
     <HeaderContainer>
       <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -51,12 +51,17 @@ export const Header: FC = () => {
 
       {isAuthenticated && (
         <IconsContainer>
-          <a href="/my-orders">
-            <IconImage src={my_orders} alt="My Orders" />
-          </a>
-          <a href="/cart">
-            <IconImage src={cart} alt="Cart" />
-          </a>
+          {role === "user" &&
+            <>
+              <a href="/my-orders">
+                <IconImage src={my_orders} alt="My Orders" />
+              </a>
+              <a href="/cart">
+                <IconImage src={cart} alt="Cart" />
+              </a>
+            </>
+          }
+
           <LogoutButton />
         </IconsContainer>
       )}
@@ -69,8 +74,8 @@ const LogoutButton = () => {
   const navigate = useNavigate();
 
   return (
-    <IconImage 
-      src={logout} 
+    <IconImage
+      src={logout}
       alt="Logout"
       onClick={() => {
         dispatch(logoutFetch());

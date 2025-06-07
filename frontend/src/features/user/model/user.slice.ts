@@ -6,6 +6,7 @@ const initialState: UserState = {
   password: "",
   productsID: [],
   ordersID: [],
+  role: sessionStorage.getItem("role"),
   loading: true,
   isAuthenticated:
     sessionStorage.getItem("isAuthenticated") === "true" || false,
@@ -18,6 +19,9 @@ export const userSlice = createSlice({
   reducers: {
     changeUsername: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
+    },
+    changeRole: (state, action: PayloadAction<string>) => {
+      state.role = action.payload;
     },
     changeIsAuthenticated: (state, action: PayloadAction<boolean>) => {
       state.isAuthenticated = action.payload;
@@ -50,6 +54,7 @@ export const userSlice = createSlice({
     logout: (state) => {
       sessionStorage.removeItem("username");
       sessionStorage.removeItem("isAuthenticated");
+      sessionStorage.removeItem("role");
       state.username = "";
       state.password = "";
       state.loading = false;
@@ -74,4 +79,5 @@ export const {
   changeOrdersID,
   deleteProductsID,
   addProductsID,
+  changeRole
 } = userSlice.actions;

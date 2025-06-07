@@ -53,7 +53,7 @@ export const CardCart: FC<{ id: number }> = ({ id }) => {
 
             <div className="flex flex-col items-center justify-evenly w-1/2">
               <span className="font-bold">{product.price * count} ₽</span>
-              <Counter id={id} />
+              <Counter id={id} count={count}/>
               <span
                 className="text-sm text-gray-500"
                 data-testid="counterAvailability"

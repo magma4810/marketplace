@@ -8,12 +8,14 @@ type ProductModalProps = {
   product: Products;
   isOpen: boolean;
   onClose: () => void;
+  count: number
 };
 
 export const ProductModal = ({
   product,
   isOpen,
   onClose,
+  count
 }: ProductModalProps) => {
   useEffect(() => {
     if (isOpen) {
@@ -108,7 +110,7 @@ export const ProductModal = ({
                   </div>
                 </div>
                 <div className=" h-[10vh] flex justify-center items-center">
-                  <AddToCart data={product} />
+                  <AddToCart data={product} count={count}/>
                 </div>
               </div>
             </div>

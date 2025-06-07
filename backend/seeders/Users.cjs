@@ -6,21 +6,31 @@ module.exports = {
             password: "qwerty123",
             productsID: [1,6,3,9,10],
             ordersID: [1,3],
-            address: "Kashkina 22, Saint-Peterburg"
+            address: "Kashkina 22, Saint-Peterburg",
+            role: "user"
         },
         {
             username: "fondapho",
             password: "qwerty123",
             productsID: [2,10,3,12],
             ordersID: [2,5],
-            address: "Belloruskya 69"
+            address: "Belloruskya 69",
+            role: "user"
         },
         {
             username: "ermesanl",
             password: "qwerty123",
             productsID: [3,7,11,11,13],
             ordersID: [4,6],
-            address: "Arbat 11, Moscow"
+            address: "Arbat 11, Moscow",
+            role: "user"
+        },
+        {
+            username: "admin123",
+            password: "admin123",
+            productsID: [0],
+            ordersID: [0],
+            role: "admin"
         },
     ], {});
 },

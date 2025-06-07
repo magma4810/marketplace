@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "react-feather";
-import { changeUsername,changeIsAuthenticated } from "@/features/user/model/user.slice";
+import { changeUsername,changeIsAuthenticated, changeRole } from "@/features/user/model/user.slice";
 import { useAppDispatch } from "@/app/providers/store";
 
 export const Signin: FC = () => {
@@ -37,7 +37,7 @@ export const Signin: FC = () => {
         throw new Error(errorData.message || "Ошибка при проверке пароля");
       }
 
-      const data: { password: string; address: string } = await userInfo.json();
+      const data: { password: string; address: string; role: string } = await userInfo.json();
 
       if (data.password !== password) {
         throw new Error("Неверный пароль или логин");
@@ -50,6 +50,8 @@ export const Signin: FC = () => {
 
       if (!response.ok) throw new Error("Ошибка авторизации");
       sessionStorage.setItem("address", data.address);
+      sessionStorage.setItem("role", data.role);
+      dispatch(changeRole(data.role));
       navigate("/");
     } catch (err) {
       console.error("Authentication error:", err);

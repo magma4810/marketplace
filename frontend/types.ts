@@ -25,6 +25,7 @@ export type OrdersState = {
 export type UserState = {
   username: string;
   password: string;
+  role: string | null;
   productsID: Array<number>;
   ordersID: Array<number>;
   loading: boolean;

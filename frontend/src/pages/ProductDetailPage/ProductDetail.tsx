@@ -7,7 +7,8 @@ import { StoreApp } from "@/app/providers/store";
 export const ProductDetail: FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
+  const productsID = useSelector((store: StoreApp) => store.user.productsID);
+  const count = productsID.filter((itemID) => itemID === Number(id)).length;
   const product = useSelector((store: StoreApp) =>
     store.products.products.find((p) => p.id === Number(id)),
   );
@@ -18,5 +19,5 @@ export const ProductDetail: FC = () => {
 
   if (!product) return <div>Loading...</div>;
 
-  return <ProductModal product={product} isOpen={true} onClose={handleClose} />;
+  return <ProductModal product={product} isOpen={true} onClose={handleClose} count={count}/>;
 };

@@ -183,7 +183,7 @@ class UserController {
         const { username } = req.params;
         try {
             const [getData] = await sequelize.query(
-                `SELECT password,address FROM "Users" WHERE username = :username`,
+                `SELECT password,address,role FROM "Users" WHERE username = :username`,
                 {
                     replacements: { username }
                 }

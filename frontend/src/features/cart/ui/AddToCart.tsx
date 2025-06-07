@@ -20,19 +20,17 @@ const AddToCartButton = styled.button`
   }
 `;
 
-export const AddToCart: FC<{ data: Products }> = ({ data }) => {
+export const AddToCart: FC<{ data: Products; count: number }> = ({ data,count }) => {
   const isAuthenticated = useSelector(
     (store: StoreApp) => store.user.isAuthenticated,
   );
-  const productsID = useSelector((store: StoreApp) => store.user.productsID);
-  const count = productsID.filter((itemID) => itemID === data.id).length;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   return (
     <>
       {isAuthenticated && count > 0 ? (
-        <Counter id={data.id} />
+        <Counter id={data.id} count={count}/>
       ) : (
         <AddToCartButton
           onClick={() =>

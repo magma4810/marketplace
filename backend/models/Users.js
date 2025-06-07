@@ -18,15 +18,21 @@ export const Users = sequelize.define('Users', {
   productsID: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
-    allowNull: false
+    allowNull: true
   },
   ordersID: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
-    allowNull: false
+    allowNull: true
   },
   address: {
     type: DataTypes.STRING,
+    defaultValue: "",
+    allowNull: true,
+  },
+  role: {
+    type: DataTypes.STRING,
+    defaultValue: "user",
     allowNull: false,
   }
 }, {

@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 import { AddToCart } from "../../cart/ui/AddToCart";
 import { StoreApp } from "@/app/providers/store";
 import { ProductModal } from "@/pages/ProductModalPage/ProductModal";
+import { Counter } from "@/features/cart/ui/Counter";
 
 export const CardProducts: FC<CardProps> = ({ data }) => {
   const [open, setOpen] = useState(false);
   const productsID = useSelector((store: StoreApp) => store.user.productsID);
   const count = productsID.filter((itemID) => itemID === data.id).length;
-
+  const role = useSelector((store: StoreApp) => store.user.role);
   return (
     <div className="bg-white w-[25vw] h-[30vw] rounded-4xl m-2.5  p-3.5">
       <div
@@ -29,17 +30,25 @@ export const CardProducts: FC<CardProps> = ({ data }) => {
 
         <div className="flex justify-evenly w-full">
           <span>Цена: {data.price}₽</span>
-          <span>В наличии: {data.count - count}</span>
+          {role === "user" && <span>В наличии: {data.count - count}</span>}
         </div>
       </div>
-      <div className=" h-1/5 flex justify-center items-center">
-        <AddToCart data={data} />
-      </div>
+      {role === "admin" ? 
+        <div className=" flex justify-center items-center mt-3.5">
+          <Counter id={data.id} count={data.count}/>
+        </div>
+      : 
+         <div className=" h-1/5 flex justify-center items-center">
+        <AddToCart data={data} count={count}/>
+        </div> 
+       }
+      
 
       <ProductModal
         product={data}
         isOpen={open}
         onClose={() => setOpen(false)}
+        count={role === "admin" ? data.count : count}
       />
     </div>
   );
