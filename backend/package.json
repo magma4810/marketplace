@@ -1,0 +1,36 @@
+{
+  "name": "backend-marketplace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dbr": "yarn sequelize db:migrate:undo:all && yarn sequelize db:migrate && yarn sequelize db:seed:all",
+    "start": "npx babel-node server.js",
+    "dev": "nodemon --exec babel-node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-session-sequelize": "^7.1.7",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "esm": "^3.2.25",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "js-cookie": "^3.0.5",
+    "pg": "8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "6.35.1",
+    "sequelize-cli": "^6.6.2",
+    "session-file-store": "^1.5.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.9",
+    "nodemon": "^3.1.9"
+  }
+}

@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProductDetail component > matches snapshot when loading 1`] = `
+<div>
+  <div>
+    Loading...
+  </div>
+</div>
+`;
+
+exports[`ProductDetail component > matches snapshot when product exists 1`] = `
+<div>
+  <div
+    data-testid="product-modal"
+  >
+    protein
+  </div>
+</div>
+`;

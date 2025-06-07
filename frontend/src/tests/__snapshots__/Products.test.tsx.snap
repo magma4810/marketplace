@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Products component > matches snapshot 1`] = `
+<div>
+  <div>
+    Mock Header
+  </div>
+  <div
+    class=" flex flex-wrap justify-between w-[100vw] h-full items-center p-[2vw]"
+  >
+    <div
+      class="flex gap-4 mb-6 justify-center items-center h-[50%] w-full"
+    >
+      <input
+        class=" border-blue-600 border-1 w-[40%] px-4 py-2 bg-white rounded-lg"
+        placeholder="Начните вводить название товара"
+        type="text"
+        value=""
+      />
+      <button
+        class="px-4 py-2 rounded-lg transition-colors bg-gray-200 hover:bg-gray-300"
+      >
+        Sort by ABC
+      </button>
+      <button
+        class="px-4 py-2 rounded-lg transition-colors bg-blue-500 text-white"
+      >
+        Sort by Price
+        <span
+          class="ml-2"
+          data-testid="direction"
+        >
+          ↑
+        </span>
+      </button>
+    </div>
+    <div>
+      <div>
+        <div
+          data-testid="product-card"
+        >
+          Product B
+        </div>
+      </div>
+      <div>
+        <div
+          data-testid="product-card"
+        >
+          Product A
+        </div>
+      </div>
+      <div>
+        <div
+          data-testid="product-card"
+        >
+          Product C
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
