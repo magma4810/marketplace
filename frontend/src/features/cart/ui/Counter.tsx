@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { StoreApp, useAppDispatch } from "@/app/providers/store";
 import { addProductsID, deleteProductsID } from "@/features/user/model/user.slice";
 import { updateCountProduct } from "@/features/products/api/products";
+import { changeProductsById } from "@/features/products/model/products.slice";
 
 export const Counter: FC<{ id: number; count: number }> = ({ ...props }) => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,10 @@ export const Counter: FC<{ id: number; count: number }> = ({ ...props }) => {
         dispatch(addProductsID(props.id));
       }
     } else {
+      dispatch(changeProductsById({
+        id: props.id,
+        changes: { count: props.count + 1 } 
+      }));
       dispatch(updateCountProduct({
         count: ++props.count,
         id: props.id,
@@ -28,6 +33,10 @@ export const Counter: FC<{ id: number; count: number }> = ({ ...props }) => {
         dispatch(deleteProductsID(props.id));
       }
     } else {
+      dispatch(changeProductsById({
+        id: props.id,
+        changes: { count: props.count - 1 } 
+      }));
       dispatch(updateCountProduct({
         count: --props.count,
         id: props.id,

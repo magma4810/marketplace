@@ -15,8 +15,18 @@ export const productsSlice = createSlice({
     changeLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
+    changeProductsById: (state, action) => {
+      const { id, changes } = action.payload;
+      const productIndex = state.products.findIndex(p => p.id === id);
+      if (productIndex !== -1) {
+        state.products[productIndex] = { 
+          ...state.products[productIndex], 
+          ...changes 
+        };
+      }
+    },
   },
 });
 
 export const productsReducer = productsSlice.reducer;
-export const { changeProducts, changeLoading } = productsSlice.actions;
+export const { changeProducts, changeLoading,changeProductsById } = productsSlice.actions;

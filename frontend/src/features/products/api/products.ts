@@ -26,8 +26,7 @@ export const getProducts = createAsyncThunk(
 
   export const updateCountProduct = createAsyncThunk(
     "products/updateCountProduct",
-    async (payload: { count: number; id: number }, { dispatch }) => {
-      dispatch(changeLoading(true));
+    async (payload: { count: number; id: number }) => {
       const response = await fetch(`${API_URL}/updateCountProduct/${payload.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -39,11 +38,6 @@ export const getProducts = createAsyncThunk(
       if (!response.ok) {
         throw new Error("Не удалось обновить кол во продукта");
       }
-  
-      const data = await response.json();
-      dispatch(changeProducts(data));
-      dispatch(changeLoading(false));
-      return data;
     },
   );
 
